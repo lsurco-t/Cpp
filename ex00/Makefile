@@ -1,0 +1,2 @@
+Name = Megaphone
+CC = c++
