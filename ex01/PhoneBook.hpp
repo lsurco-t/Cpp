@@ -3,11 +3,11 @@
 
 class PhoneBook {
 	private:
-		Contact contacts[8];
+		Contact _contactsBook[8];
 
 	public:
 		
-		void add();
-		void search();
-		void close();
+		void addContact();
+		void searchContact();
+		void closePhoneBook();
 };
