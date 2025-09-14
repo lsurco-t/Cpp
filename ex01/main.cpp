@@ -5,31 +5,29 @@
 
 int	main(void)
 {
-	char option;
+	std::string option;
 
-	do {
-		std::cout << "********************************\n";
-		std::cout << "\033[33m    Welcome to the Phonebook\033[0m\n";
-		std::cout << "********************************\n";
-		std::cout << "1. ADD\n";
-		std::cout << "2. SEARCH\n";
-		std::cout << "3. EXIT\n";
-		std::cout << "\033[31mPlease select an action\033[0m\n";
+	std::cout << "*******************************************\n";
+	std::cout << "\033[33m    Welcome to the old crappy Phonebook\033[0m\n";
+	std::cout << "*******************************************\n";
+	
+	while (true)
+	{
+		std::cout << "\033[32mType ADD, SEARCH or EXIT, nothing else!!\033[0m\n";
 		std::cin >> option;
 
-		switch(option) {
-			case '1':
-				break;
-			case '2':
-				break;
-			case '3':
-				std::cout << "See you soon!\n";
-				break;
-			default:
-				std::cout << "Invalid number!\n";
-				break;
+		if (option == "ADD") {
+			std::cout << "Good job!\n";
 		}
-	} while (option != '3');
-	
+		else if (option == "SEARCH"){
+			std::cout << "Here are the contacts\n";
+		}
+		else if (option == "EXIT"){
+			std::cout << "\033[31mGoodbye!\033[0m\n";
+			break;
+		}
+		else
+			std::cout << "\033[30mInvalid option!\033[0m\n";
+	}
 	return 0;
 }
