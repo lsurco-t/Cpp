@@ -8,7 +8,7 @@ int	main(void)
 	std::string option;
 
 	std::cout << "*******************************************\n";
-	std::cout << "\033[33m    Welcome to the old crappy Phonebook\033[0m\n";
+	std::cout << "\033[33m    Welcome to the great Phonebook\033[0m\n";
 	std::cout << "*******************************************\n";
 	
 	while (true)
