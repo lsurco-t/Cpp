@@ -1,4 +1,4 @@
-NAME = crappyphonebook
+NAME = awesomephonebook
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++11
 SRC = PhoneBook.cpp Contact.cpp main.cpp 

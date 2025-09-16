@@ -6,6 +6,9 @@ class PhoneBook {
 		Contact _contactsBook[8];
 
 	public:
+
+		PhoneBook() = default;
+		~PhoneBook() = default;
 		
 		void addContact();
 		void searchContact();

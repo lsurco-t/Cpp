@@ -1,10 +1,10 @@
 #include <iostream>
-#include <iomanip>
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
 
 int	main(void)
 {
+	PhoneBook newBook;
 	std::string option;
 
 	std::cout << "*******************************************\n";
@@ -17,7 +17,7 @@ int	main(void)
 		std::cin >> option;
 
 		if (option == "ADD") {
-			std::cout << "Good job!\n";
+			newBook.addContact();
 		}
 		else if (option == "SEARCH"){
 			std::cout << "Here are the contacts\n";
