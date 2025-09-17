@@ -2,6 +2,7 @@
 #include "Contact.hpp"
 #include <iostream>
 #include <iomanip>
+#include <limits>
 
 PhoneBook::PhoneBook() : _totalContacts(0) {}
 
@@ -59,16 +60,51 @@ void PhoneBook::addContact() {
 	std::cout << "contact added at index " << index << std::endl; //debugging line
 }
 
-void PhoneBook::searchContact() {
-	
-	Contact newContact;
-	unsigned int totalContacts = _totalContacts;
-
-	do {
-		std::cout << std::setw(10);
-		std::cout << newContact.getFirstName();
-		totalContacts--;
-	}while(totalContacts != 0);
+std::string truncateField(const std::string& str) {
+	if (str.length() > 10) {
+		return str.substr(0, 9) + ".";
+	}
+	return str;
 }
 
+void PhoneBook::searchContact() {
+	
+	if (_totalContacts > 0) {
 
+		std::cout << "|" << std::setw(10) << "Index";
+		std::cout << "|" << std::setw(10) << "First Name";
+		std::cout << "|" << std::setw(10) << "Last Name";
+		std::cout << "|" << std::setw(10) << "Nickname" << "|" << std::endl;
+
+		int maxContacts = (_totalContacts < 8) ? _totalContacts : 8;
+		int start = (_totalContacts >=8) ? (_totalContacts % 8) : 0;
+
+		for (int i = 0; i < maxContacts; i++) {
+			int realIndex = (start + i) % 8;
+			std::cout << "|" << std::setw(10) << i;
+			std::cout << "|" << std::setw(10) << truncateField(_contactsBook[realIndex].getFirstName());
+			std::cout << "|" << std::setw(10) << truncateField(_contactsBook[realIndex].getLastName());
+			std::cout << "|" << std::setw(10) << truncateField(_contactsBook[realIndex].getNickName()) << "|" << std::endl;
+		}
+
+		int index = 0;
+		std::cout << "Select user to display: ";
+		if (!(std::cin >> index) || index < 0 || index >= maxContacts) {
+			std::cin.clear();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			std::cout << "Invalid number, please enter a valid one." << std::endl;
+			return ;
+		}
+
+		int realIndex = (start + index) % 8;
+
+		std::cout << "First name: " << _contactsBook[realIndex].getFirstName() << std::endl;
+		std::cout << "Last name : " << _contactsBook[realIndex].getLastName() << std::endl;
+		std::cout << "Nickname  : " << _contactsBook[realIndex].getNickName() << std::endl;
+		std::cout << "Phone number : " << _contactsBook[realIndex].getPhoneNumber() << std::endl;
+		std::cout << "Darkest secret : " << _contactsBook[realIndex].getDarkestSecret() << std::endl;
+	}
+	else {
+		std::cout << "No contacts available. \n";
+	}
+}
