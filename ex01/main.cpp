@@ -14,7 +14,7 @@ int	main(void)
 	while (true)
 	{
 		std::cout << "\033[32mType ADD, SEARCH or EXIT, nothing else!!\033[0m\n";
-		std::cin >> option;
+		std::getline(std::cin, option);
 
 		if (option == "ADD") {
 			newBook.addContact();

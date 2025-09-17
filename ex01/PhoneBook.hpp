@@ -2,15 +2,14 @@
 #include "Contact.hpp"
 
 class PhoneBook {
+	
 	private:
 		Contact _contactsBook[8];
+		unsigned int _totalContacts;
 
 	public:
+		PhoneBook();
 
-		PhoneBook() = default;
-		~PhoneBook() = default;
-		
 		void addContact();
 		void searchContact();
-		void closePhoneBook();
 };
