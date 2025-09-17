@@ -59,8 +59,16 @@ void PhoneBook::addContact() {
 	std::cout << "contact added at index " << index << std::endl; //debugging line
 }
 
-void searchContact() {
+void PhoneBook::searchContact() {
 	
+	Contact newContact;
+	unsigned int totalContacts = _totalContacts;
+
+	do {
+		std::cout << std::setw(10);
+		std::cout << newContact.getFirstName();
+		totalContacts--;
+	}while(totalContacts != 0);
 }
 
 

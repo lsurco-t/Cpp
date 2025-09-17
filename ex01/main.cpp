@@ -21,6 +21,7 @@ int	main(void)
 		}
 		else if (option == "SEARCH"){
 			std::cout << "Here are the contacts\n";
+			newBook.searchContact();
 		}
 		else if (option == "EXIT"){
 			std::cout << "\033[31mGoodbye!\033[0m\n";
