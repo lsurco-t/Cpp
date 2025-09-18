@@ -80,7 +80,7 @@ void PhoneBook::searchContact(){
 		std::cout << "|" << COLOR_YELLOW << std::setw(10) << "Nickname" << COLOR_RESET << "|" << std::endl;
 
 		int maxContacts = (_totalContacts < 8) ? _totalContacts : 8;
-		int start = (_totalContacts >=8) ? (_totalContacts % 8) : 0;
+		int start = (_totalContacts >= 8) ? (_totalContacts % 8) : 0;
 
 		for (int i = 0; i < maxContacts; i++) {
 			int realIndex = (start + i) % 8;
