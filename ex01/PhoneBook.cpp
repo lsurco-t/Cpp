@@ -95,7 +95,7 @@ void PhoneBook::searchContact(){
 		if (!(std::cin >> index) || index < 0 || index >= maxContacts) {
 			std::cin.clear();
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-			std::cout << COLOR_RED << "Invalid contact number." << COLOR_RESET << std::endl;
+			std::cout << COLOR_RED << "Invalid index number." << COLOR_RESET << std::endl;
 			return ;
 		}
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
