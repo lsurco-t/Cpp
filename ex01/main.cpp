@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits>
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
 
@@ -14,13 +15,17 @@ int	main(void)
 	while (true)
 	{
 		std::cout << "\033[32mType ADD, SEARCH or EXIT, nothing else!!\033[0m\n";
-		std::getline(std::cin, option);
-
-		if (option == "ADD") {
+		if (!std::getline(std::cin, option)) {
+			std::cout << "\033[31mGoodbye!\033[0m\n";
+			break;;
+		}
+		if (option == "ADD"){
 			newBook.addContact();
 		}
 		else if (option == "SEARCH"){
 			newBook.searchContact();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
 		}
 		else if (option == "EXIT"){
 			std::cout << "\033[31mGoodbye!\033[0m\n";
