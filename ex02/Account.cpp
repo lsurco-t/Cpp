@@ -69,7 +69,7 @@ void	Account::makeDeposit( int deposit ){
 	_totalNbDeposits++;
 
 	std::cout << ";deposit:" << deposit
-			  << ";p_amount:" << (_amount)
+			  << ";amount:" << _amount
 			  << ";nb_deposits:" << _nbDeposits << std::endl;
 }
 
@@ -96,14 +96,14 @@ bool	Account::makeWithdrawal( int withdrawal ){
 	_totalNbWithdrawals++;
 
 	std::cout << ";withdrawal:" << withdrawal
-			  << ";amount:" << (_amount - withdrawal)
-			  << ";nb_withdrawal:" << _nbWithdrawals << std::endl;
+			  << ";amount:" << _amount
+			  << ";nb_withdrawals:" << _nbWithdrawals << std::endl;
 	return (true);
 }
 
 int		Account::checkAmount() const {return _amount;}
 
-void	Account::displayStatus() const{
+void	Account::displayStatus() const {
 
 	_displayTimestamp();
 
