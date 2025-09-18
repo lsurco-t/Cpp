@@ -75,8 +75,15 @@ void	Account::makeDeposit( int deposit ){
 
 bool	Account::makeWithdrawal( int withdrawal ){
 
-	if (withdrawal > _amount)
+	if (withdrawal > _amount){
+
+		_displayTimestamp();
+		std::cout << " index:" << _accountIndex
+				  << ";p_amount:" << _amount
+				  << ";withdrawal:refused" << std::endl;
 		return (false);
+
+	}
 
 	_displayTimestamp();
 
