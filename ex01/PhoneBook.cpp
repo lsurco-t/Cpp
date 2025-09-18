@@ -92,7 +92,7 @@ void PhoneBook::searchContact() {
 		if (!(std::cin >> index) || index < 0 || index >= maxContacts) {
 			std::cin.clear();
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-			std::cout << "Invalid number, please enter a valid one." << std::endl;
+			std::cout << "\033[31mInvalid contact number.\033[0m]" << std::endl;
 			return ;
 		}
 
