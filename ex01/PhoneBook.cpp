@@ -24,7 +24,8 @@ std::string getValidParam(const std::string& prompt){
 	do {
 		std::cout << prompt << ": ";
 		if (!std::getline(std::cin, input)) {
-			throw std::runtime_error("Failed to read input");
+			std::cout << COLOR_RED << ("Failed to read input.\n") << COLOR_RESET;
+			std::exit(0);
 		}
 		if (input.empty()) {
 			std::cout << COLOR_RED << "Input can not be empty!\n" << COLOR_RESET;
@@ -68,12 +69,15 @@ std::string truncateField(const std::string& str){
 
 void PhoneBook::searchContact(){
 	
-	if (_totalContacts > 0) {
+		if (_totalContacts == 0) {
+			std::cout << COLOR_RED << "No contacts available." << COLOR_RESET << std::endl;
+			return ;
+		}
 
-		std::cout << "|" << std::setw(10) << "Index";
-		std::cout << "|" << std::setw(10) << "First Name";
-		std::cout << "|" << std::setw(10) << "Last Name";
-		std::cout << "|" << std::setw(10) << "Nickname" << "|" << std::endl;
+		std::cout << "|" << COLOR_YELLOW << std::setw(10) << "Index" << COLOR_RESET;
+		std::cout << "|" << COLOR_YELLOW << std::setw(10) << "First Name" << COLOR_RESET;
+		std::cout << "|" << COLOR_YELLOW << std::setw(10) << "Last Name" << COLOR_RESET;
+		std::cout << "|" << COLOR_YELLOW << std::setw(10) << "Nickname" << COLOR_RESET << "|" << std::endl;
 
 		int maxContacts = (_totalContacts < 8) ? _totalContacts : 8;
 		int start = (_totalContacts >=8) ? (_totalContacts % 8) : 0;
@@ -87,13 +91,14 @@ void PhoneBook::searchContact(){
 		}
 
 		int index = 0;
-		std::cout << "Select user to display: ";
+		std::cout << "Select user index to display: ";
 		if (!(std::cin >> index) || index < 0 || index >= maxContacts) {
 			std::cin.clear();
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 			std::cout << COLOR_RED << "Invalid contact number." << COLOR_RESET << std::endl;
 			return ;
 		}
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 		int realIndex = (start + index) % 8;
 
@@ -102,8 +107,4 @@ void PhoneBook::searchContact(){
 		std::cout << COLOR_YELLOW << "Nickname  : " << COLOR_RESET << _contactsBook[realIndex].getNickName() << std::endl;
 		std::cout << COLOR_YELLOW << "Phone number : " << COLOR_RESET << _contactsBook[realIndex].getPhoneNumber() << std::endl;
 		std::cout << COLOR_YELLOW << "Darkest secret : " << COLOR_RESET << _contactsBook[realIndex].getDarkestSecret() << std::endl;
-	}
-	else {
-		std::cout << COLOR_RED << "No contacts available.\n" << COLOR_RESET;
-	}
 }

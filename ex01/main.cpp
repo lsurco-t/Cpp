@@ -24,8 +24,6 @@ int	main(void)
 		}
 		else if (option == "SEARCH"){
 			newBook.searchContact();
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
 		}
 		else if (option == "EXIT"){
 			std::cout << "\033[31mGoodbye!\033[0m\n";
