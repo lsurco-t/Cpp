@@ -3,18 +3,14 @@
 Zombie::Zombie(){}
 
 Zombie::~Zombie(){
-	std::cout << "Zombie " << Zombie::_name << " got destroyed\n";  
+	std::cout << "Zombie " << _name << " got destroyed\n";  
 }
 
 void Zombie::setZombieName(const std::string& zombieName){
 	 _name = zombieName;
 }
 
-const std::string& Zombie::getZombieName() const{
-	return _name;
-}
-
 void Zombie::announce(){
-	std::cout << "BraiiiiiiinnnzzzZ..." << std::endl;
+	std::cout << "\033[31m" << _name << ": BraiiiiiiinnnzzzZ...\033[0m" << std::endl;
 }
 

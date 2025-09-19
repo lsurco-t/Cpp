@@ -1,14 +1,15 @@
-#include <iostream>
 #include "newZombieUtils.hpp"
 #include "Zombie.hpp"
 
 int main(void){
 
 	randomChump("Foo");
+	randomChump("Fii");
+	randomChump("Fee");
 
 	Zombie* zombieTwo = newZombie("Faa");
-	std::cout << zombieTwo->getZombieName() << ": ";
 	zombieTwo->announce();
-	delete(zombieTwo);
+	delete zombieTwo;
+
 	return (0);
 }

@@ -15,7 +15,5 @@ class Zombie {
 
 		void setZombieName(const std::string& zombieName);
 
-		const std::string& getZombieName() const;
-
 		void announce(void);
 };
