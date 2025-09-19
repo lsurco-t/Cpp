@@ -11,5 +11,5 @@ int main(void){
 	zombieTwo->announce();
 	delete zombieTwo;
 
-	return (0);
+	return 0;
 }
