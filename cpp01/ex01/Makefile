@@ -1,4 +1,4 @@
-NAME = Moarrrrrrrrr
+NAME = moarrrrrrrrr
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++11
 SRC = main.cpp Zombie.cpp zombieHorde.cpp 
