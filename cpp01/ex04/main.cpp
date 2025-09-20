@@ -5,7 +5,7 @@
 int main(int argc, char **argv){
 
 	if (argc != 4) {
-		std::cout << "Only 3 arguments please, thank you";
+		std::cout << "Only 3 arguments please, thank you\n";
 		return 1;
 	}
 
@@ -28,8 +28,22 @@ int main(int argc, char **argv){
 
 	std::string line;
 	while (std::getline(inputFile, line)){
-		
-	}
+		std::string newLine;
+		size_t i = 0;
 
+		while (i < line.length()){
+			if(line.substr(i, findStr.length()) == findStr){
+				newLine += replaceWithStr;
+				i += findStr.length();
+			}
+			else{
+				newLine += line[i];
+				i++;
+			}
+		}
+			outputFile << newLine << "\n";
+	}
+	inputFile.close();
+	outputFile.close();
 	return 0;
 }
