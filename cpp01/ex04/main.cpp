@@ -14,8 +14,22 @@ int main(int argc, char **argv){
 	std::string replaceWithStr = argv[3];
 	std::string outputFileName = inputFileName + ".replace";
 
-	
+	std::ifstream inputFile(inputFileName);
+	if (!inputFile){
+		std::cout << "Failed to open " << inputFileName << std::endl;
+		return 1;
+	}
 
+	std::ofstream outputFile(outputFileName);
+	if (!outputFile){
+		std::cout << "Failed to create " << outputFileName << std::endl;
+		return 1;
+	}
+
+	std::string line;
+	while (std::getline(inputFile, line)){
+		
+	}
 
 	return 0;
 }
