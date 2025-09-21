@@ -1,7 +1,7 @@
-NAME = harlfilter
+NAME = harlFilter
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++11
-SRC = main.cpp
+SRC = main.cpp Harl.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
