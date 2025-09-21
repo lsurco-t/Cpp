@@ -9,7 +9,6 @@ int main(void){
 	hiverEight.complain("INFO");
 	std::cout << "\n";
 
-
 	std::cout << "Hiver eight says: ";
 	hiverEight.complain("DEBUG");
 	std::cout << "\n";
