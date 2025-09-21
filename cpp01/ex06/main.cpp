@@ -10,13 +10,13 @@ int main(int argc, char **argv)
 		return 1;
 	}
 
-	std::cout << "Hiver eight complain starts like: ";
-	hiverEight.complain("INFO");
+	std::cout << "Hiver eight mode: ";
+	hiverEight.complain(argv[1]);
 	std::cout << "\n";
 
-	std::cout << "Hiver eight complain starts like: ";
-	hiverEight.complain("ERROR");
+	std::cout << "Hiver eight mode: ";
+	hiverEight.complain(argv[1]);
 	std::cout << "\n";
-	
+
 	return 0;
 }
