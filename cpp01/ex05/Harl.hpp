@@ -3,6 +3,7 @@
 #include <string>
 
 class Harl {
+	
 	private:
 		void debug (void);
 		void info (void);
