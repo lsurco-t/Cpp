@@ -14,6 +14,11 @@ int main(int argc, char **argv){
 	std::string replaceWithStr = argv[3];
 	std::string outputFileName = inputFileName + ".replace";
 
+	if (findStr.empty()) {
+		std::cout << "Error: string to find cannot be empty\n";
+		return 1;
+	}
+
 	std::ifstream inputFile(inputFileName);
 	if (!inputFile){
 		std::cout << "Failed to open " << inputFileName << std::endl;
