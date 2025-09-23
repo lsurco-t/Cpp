@@ -4,9 +4,8 @@ Fixed::Fixed() : _fixedPoint(0){
 	std::cout << "Default constructor called\n";
 }
 
-Fixed::Fixed (const Fixed& other){
+Fixed::Fixed (const Fixed& other) : _fixedPoint(other._fixedPoint){
 	std::cout << "Copy constructor called\n";
-	_fixedPoint = other._fixedPoint;
 }
 
 Fixed& Fixed::operator=(const Fixed& other){
