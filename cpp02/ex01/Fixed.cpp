@@ -28,18 +28,25 @@ void Fixed::setRawBits (int const raw){
 	_fixedPoint = raw;
 }
 
-Fixed::Fixed(const int fixedPoint){
-
+Fixed::Fixed(const int fixedIntPoint){
+	std::cout << "Int constructor called\n";
+	_fixedPoint = fixedIntPoint << _fractionalBits;
 }
 
 Fixed::Fixed(const float floatPoint){
-
+	std::cout << "Float constructor called\n";
+	_fixedPoint = roundf(floatPoint * (1 << _fractionalBits));
 }
 
 float Fixed::toFloat(void) const {
-
+	return (float) _fixedPoint / (1 << _fractionalBits);
 }
 
 int Fixed::toInt(void) const {
+	return _fixedPoint >> _fractionalBits;
+}
 
+std::ostream& operator<<(std::ostream& out, const Fixed& fixed){
+	out << fixed.toFloat();
+	return out;
 }

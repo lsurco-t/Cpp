@@ -17,7 +17,7 @@ class Fixed {
 		int getRawBits (void) const;
 		void setRawBits (int const raw);
 
-		Fixed(const int fixedPoint);
+		Fixed(const int fixedIntPoint);
 		Fixed(const float floatPoint);
 
 		float toFloat(void) const;
