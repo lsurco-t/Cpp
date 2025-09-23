@@ -70,19 +70,25 @@ Fixed Fixed::operator/(const Fixed& other) const {
 }
 
 Fixed& Fixed::operator++() {
-
+	_fixedPoint++;
+	return *this;
 }
 
 Fixed Fixed::operator++(int) {
-
+	Fixed temp(*this);
+	_fixedPoint++;
+	return temp;
 }
 
 Fixed& Fixed::operator--() {
-
+	_fixedPoint--;
+	return *this;
 }
 
 Fixed Fixed::operator--(int) {
-
+	Fixed temp(*this);
+	_fixedPoint--;
+	return temp;
 }
 
 Fixed& Fixed::min(Fixed& a, Fixed& b) {
