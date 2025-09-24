@@ -8,10 +8,10 @@ Point::Point (const Point& other) : _x(other._x), _y(other._y){}
 
 Point::~Point(){}
 
-Fixed Point::getValueofX(){
+Fixed Point::getX()const {
 	return _x;
 }
 	
-Fixed Point::getValueofY(){
+Fixed Point::getY() const {
 	return _y;
 }

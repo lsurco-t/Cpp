@@ -1,5 +1,5 @@
 #pragma once
-#include <iostream>
+
 #include "Fixed.hpp"
 
 class Point {
@@ -15,6 +15,6 @@ class Point {
 		Point& operator=(const Point& other) = delete;
 		~Point();
 
-		Fixed getValueofX() const;
-		Fixed getValueofY() const;
+		Fixed getX() const;
+		Fixed getY() const;
 };
