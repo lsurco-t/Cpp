@@ -1,5 +1,4 @@
 #include <iostream>
-#include <iomanip>
 #include "Fixed.hpp"
 #include "Point.hpp"
 
@@ -26,7 +25,6 @@ void tests
 
 int main (void){
 
-	std::cout << std:: fixed << std::setprecision(2);
 	Point a(0.0f, 0.0f);
 	Point b(10.0f, 0.0f);
 	Point c(5.0f, 10.25f);
