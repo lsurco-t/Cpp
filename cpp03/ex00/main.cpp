@@ -3,13 +3,13 @@
 
 int main(void){
 
-	ClapTrap defaultBot;
-	ClapTrap nameBot("Robo");
+	ClapTrap nameBot("Robocop");
+	ClapTrap nameBotTwo("Optimus");
 
 	ClapTrap copyBot(nameBot);
 
 	ClapTrap assignedBot;
-	assignedBot = defaultBot;
+	assignedBot = nameBotTwo;
 
 	std::cout << "\n\033[31m------FIGHT!------\033[0m\n";
 
@@ -27,7 +27,7 @@ int main(void){
 
 	std::cout << "\n\033[31mRapid attack 15 times!\033[0m\n";
 	for (int i = 0; i < 15; i++)
-		defaultBot.attack("anotherBot");
+		nameBotTwo.attack("anotherBot");
 
 	return 0;
 }
