@@ -14,4 +14,7 @@ class Point {
 		Point (const Point& other);
 		Point& operator=(const Point& other) = delete;
 		~Point();
+
+		Fixed getValueofX() const;
+		Fixed getValueofY() const;
 };
