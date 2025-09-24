@@ -30,43 +30,57 @@ std::ostream& operator<<(std::ostream& out, const Fixed& fixed){
 }
 
 bool Fixed::operator>(const Fixed& other) const {
-
+	return this->_fixedPoint > other._fixedPoint;
 }
 
 bool Fixed::operator<(const Fixed& other) const {
-
+	return this->_fixedPoint < other._fixedPoint;
 }
 
 bool Fixed::operator>=(const Fixed& other) const {
-
-
+	return this->_fixedPoint >= other._fixedPoint;
 }
 bool Fixed::operator<=(const Fixed& other) const {
-
+	return this->_fixedPoint <= other._fixedPoint;
 }
 
 bool Fixed::operator==(const Fixed& other) const {
-
+	return this->_fixedPoint == other._fixedPoint;
 }
 
 bool Fixed::operator!=(const Fixed& other) const {
-
+	 return this->_fixedPoint != other._fixedPoint;
 }
 
 Fixed Fixed::operator+(const Fixed& other) const {
+	Fixed result;
 
+	result._fixedPoint = this->_fixedPoint + other._fixedPoint;
+	return result;
 }
 
 Fixed Fixed::operator-(const Fixed& other) const {
+	Fixed result;
 
+	result._fixedPoint = this->_fixedPoint - other._fixedPoint;
+	return result;
 }
 
 Fixed Fixed::operator*(const Fixed& other) const {
+	Fixed result;
 
+	result._fixedPoint = ((int64_t)this->_fixedPoint * other._fixedPoint) >> Fixed::_fractionalBits;
+	return result;
 }
 
 Fixed Fixed::operator/(const Fixed& other) const {
+	if (other._fixedPoint == 0){
+		throw std::runtime_error("Division by 0");
+	}
+	Fixed result;
 
+	result._fixedPoint = (this->_fixedPoint << Fixed::_fractionalBits) / other._fixedPoint;
+	return result;
 }
 
 Fixed& Fixed::operator++() {
