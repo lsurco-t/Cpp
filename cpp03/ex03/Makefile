@@ -1,4 +1,4 @@
-NAME = clapTrap
+NAME = nowitsweird
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++11
 SRC = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp

@@ -9,6 +9,7 @@ int main(void){
 
 	std::cout << "\n\033[31m------FIGHT------\033[0m\n";
 	robotone.attack("robotTwo");
+	robotone.attack("Dummybot");
 	robotone.takeDamage(10);
 
 	std::cout << "\n\033[31m---Fight moreeee---\033[0m\n";
