@@ -8,6 +8,7 @@ int main(void){
 
 	std::cout << "\n\033[31m------FIGHT------\033[0m\n";
 	firstFragTrap.attack("Terminator");
+	firstFragTrap.attack("Iron man");
 	secondFragTrap.attack("Optimus");
 
 	firstFragTrap.takeDamage(20);
