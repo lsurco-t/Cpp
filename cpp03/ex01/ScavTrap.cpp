@@ -1,10 +1,16 @@
 #include "ScavTrap.hpp"
 
 ScavTrap::ScavTrap() : ClapTrap(){
+	_hitPoints = 100;
+	_energyPoints = 50;
+	_attackDamage = 20;
 	std::cout << "ScavTrap default constructor called" << std::endl;
 }
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name){
+	_hitPoints = 100;
+	_energyPoints = 50;
+	_attackDamage = 20;
 	std::cout << "ScavTrap constructor called" << std::endl;
 }
 
@@ -23,7 +29,12 @@ ScavTrap::~ScavTrap() {
 	std::cout << "ScavTrap destructor called" << std::endl;
 }
 
+void ScavTrap::attack(const std::string& target){
+	std::cout << "ScavTrap " << _name << " attacks " << target << 
+	", causing " << _attackDamage << " points of damage!" << std::endl;
+}
+
 void ScavTrap::guardGate(){
-	std::cout << "ScavTrap is not in Gate Keeper mode" << std::endl;
+	std::cout << "ScavTrap " << _name << " is now in Gate keeper mode" << std::endl;
 }
 
