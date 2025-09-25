@@ -20,5 +20,6 @@ int main(void){
 
 	firstFragTrap.highFivesGuys();
 
+	std::cout << "\n\033[31m--- Destruction Order ---\033[0m\n";
 	return 0;
 }

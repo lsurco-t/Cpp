@@ -23,6 +23,7 @@ int main(void){
 	std::cout << "\n\033[31m---Fast Attack---\033[0m\n";
 	for (int i = 0; i < 3; i++)
 		robotthree.takeDamage(40);
-		
+	
+    std::cout << "\n\033[31m--- Destruction Order ---\033[0m\n";
 	return 0;
 }

@@ -28,6 +28,7 @@ int main(void){
 	std::cout << "\n\033[31mRapid attack 15 times!\033[0m\n";
 	for (int i = 0; i < 15; i++)
 		nameBotTwo.attack("anotherBot");
-
+    
+	std::cout << "\n\033[31m--- Destruction Order ---\033[0m\n";
 	return 0;
 }
