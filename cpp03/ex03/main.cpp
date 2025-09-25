@@ -28,7 +28,7 @@ int main() {
     dt2.beRepaired(50);    // should not work if dead
 
     std::cout << "\n\033[31m--- High Five ---\033[0m\n";
-    dt2.highFivesGuys();
+    dt1.highFivesGuys();
 
     std::cout << "\n\033[31m--- Destruction Order ---\033[0m\n";
     return 0;
