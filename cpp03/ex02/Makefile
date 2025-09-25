@@ -1,7 +1,7 @@
-NAME = clapTrap
+NAME = repetitivework
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++11
-SRC = main.cpp ClapTrap.cpp
+SRC = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
 OBJ = $(SRC:.cpp=.o)
 
 all: $(NAME)
