@@ -1,27 +1,23 @@
 #include <iostream>
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main(void){
 
-	ScavTrap robotone("robotOne");
-	ScavTrap robottwo("robotTwo");
-	ScavTrap robotthree("robotThree");
+	FragTrap firstFragTrap("fragOne");
+	FragTrap secondFragTrap("fragTwo");
 
 	std::cout << "\n\033[31m------FIGHT------\033[0m\n";
-	robotone.attack("robotTwo");
-	robotone.takeDamage(10);
+	firstFragTrap.attack("Terminator");
+	secondFragTrap.attack("Optimus");
 
-	std::cout << "\n\033[31m---Fight moreeee---\033[0m\n";
-	robotthree.attack("robotin");
-	robottwo.guardGate();
+	firstFragTrap.takeDamage(20);
+	secondFragTrap.takeDamage(36);
 
-	std::cout << "\n\033[31m---Other Skills---\033[0m\n";
-	robotthree.beRepaired(5);
-	robottwo.guardGate();
+	std::cout << "\n\033[31m------Other skills------\033[0m\n";
+	firstFragTrap.beRepaired(40);
+	secondFragTrap.beRepaired(30);
 
-	std::cout << "\n\033[31m---Fast Attack---\033[0m\n";
-	for (int i = 0; i < 3; i++)
-		robotthree.takeDamage(40);
-		
+	firstFragTrap.highFivesGuys();
+
 	return 0;
 }
