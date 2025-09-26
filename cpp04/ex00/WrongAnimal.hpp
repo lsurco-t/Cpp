@@ -10,4 +10,5 @@ class WrongAnimal : public Animal {
 		WrongAnimal& operator=(const WrongAnimal& other);
 		~WrongAnimal();
 
+		void makeSound() const override;
 };

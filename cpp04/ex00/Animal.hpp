@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 
 class Animal{
@@ -9,8 +10,8 @@ class Animal{
 		Animal();
 		Animal(const Animal& other);
 		Animal& operator=(const Animal& other);
-		~Animal();
+		virtual ~Animal();
 
-		std::string& getType()const;
-		virtual void makeSound();
+		const std::string& getType()const;
+		virtual void makeSound() const;
 };

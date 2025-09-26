@@ -9,17 +9,17 @@ Animal::Animal(const Animal& other){
 }
 
 Animal& Animal::operator=(const Animal& other){
-	std::cout << "Animal copy operator overload called\n";
+	std::cout << "Animal copy assignment operator called\n";
 }
 
 Animal::~Animal(){
 	std::cout << "Animal destructor called\n";
 }
 
-std::string& Animal::getType()const{
-
+const std::string& Animal::getType()const{
+	return _type;
 }
 
-void Animal::makeSound(){
-	
+void Animal::makeSound() const {
+	std::cout << "This is a generic animal without sound\n";
 }
