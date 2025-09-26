@@ -15,3 +15,11 @@ Animal& Animal::operator=(const Animal& other){
 Animal::~Animal(){
 	std::cout << "Animal destructor called\n";
 }
+
+std::string& Animal::getType()const{
+
+}
+
+void Animal::makeSound(){
+	
+}
