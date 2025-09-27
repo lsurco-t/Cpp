@@ -1,20 +1,27 @@
-NAME = nowitsweird
+NAME = theworldonfire
 CC = c++
-CFLAGS = -Wall -Werror -Wextra -std=c++11
-SRC = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
-OBJ = $(SRC:.cpp=.o)
+CFLAGS = -Wall -Werror -Wextra -std=c++11 -MMD -MP
+SRC = main.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
+OBJ_DIR = obj
+OBJ = $(SRC:%.cpp=$(OBJ_DIR)/%.o)
+DEP = $(OBJ:.o=.d)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
 
-%.o: %.cpp
+$(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
+
+-include $(DEP)
 
 clean:
 
-	rm -f $(OBJ)
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
 
