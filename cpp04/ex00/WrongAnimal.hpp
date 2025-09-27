@@ -1,14 +1,18 @@
 #pragma once
-#include "Animal.hpp"
 #include <iostream>
 
-class WrongAnimal : public Animal {
+class WrongAnimal {
+
+	private:
+		std::string _type;
 
 	public:
 		WrongAnimal();
+		WrongAnimal(const std::string& type);
 		WrongAnimal(const WrongAnimal& other);
 		WrongAnimal& operator=(const WrongAnimal& other);
-		~WrongAnimal();
+		virtual ~WrongAnimal();
 
-		void makeSound() const override;
+		const std::string& getType()const;
+		virtual void makeSound() const;
 };
