@@ -1,4 +1,4 @@
-NAME = polymorphism
+NAME = theworldonfire
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++11
 SRC = main.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp
