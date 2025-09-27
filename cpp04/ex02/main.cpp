@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Animal.hpp"
+#include "A_Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
 #include "WrongCat.hpp"
@@ -8,8 +8,8 @@ int main(){
 
 	//Subject default's test
 	std::cout << "\033[33m---------Subject Tests---------\033[0m\n";
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
+	const A_Animal* j = new Dog();
+	const A_Animal* i = new Cat();
 
 	std::cout << "\033[31m-----Calling destructors-----\033[0m\n";
 	delete j;//should not create a leak
@@ -18,7 +18,7 @@ int main(){
 	//Own tests
 	std::cout << "\n\033[33m---------Extra Tests---------\033[0m\n";
 	size_t amount = 10;
-	Animal* zoo[amount];
+	A_Animal* zoo[amount];
 	for (size_t i = 0; i < amount; i++){	
 		if (i < (amount / 2))
 			zoo[i] = new Dog();

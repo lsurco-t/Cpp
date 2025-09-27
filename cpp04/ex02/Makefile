@@ -1,4 +1,4 @@
-NAME = theworldonfire
+NAME = abstractclass
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++11 -MMD -MP
 SRC = main.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
