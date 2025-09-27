@@ -1,18 +1,18 @@
 #include "Cat.hpp"
 
-Cat::Cat(): A_Animal(), _catBrain(new Brain){
+Cat::Cat(): AAnimal(), _catBrain(new Brain){
 	_type = "Cat";
 	std::cout << "Cat's default constructor called\n";
 }
 
-Cat::Cat(const Cat& other): A_Animal(other){
+Cat::Cat(const Cat& other): AAnimal(other){
 	_catBrain = new Brain(*other._catBrain);
 	std::cout << "Cat's copy constructor called\n";
 }
 
 Cat& Cat::operator=(const Cat& other){
 	if (this != &other){
-		A_Animal::operator=(other);
+		AAnimal::operator=(other);
 		delete _catBrain;
 		_catBrain = new Brain(*other._catBrain);
 	}

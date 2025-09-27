@@ -1,7 +1,7 @@
 NAME = abstractclass
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++11 -MMD -MP
-SRC = main.cpp A_Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
+SRC = main.cpp AAnimal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
 OBJ_DIR = obj
 OBJ = $(SRC:%.cpp=$(OBJ_DIR)/%.o)
 DEP = $(OBJ:.o=.d)

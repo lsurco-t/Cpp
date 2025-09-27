@@ -1,18 +1,18 @@
 #include "Dog.hpp"
 
-Dog::Dog(): A_Animal(), _dogBrain(new Brain){
+Dog::Dog(): AAnimal(), _dogBrain(new Brain){
 	_type = "Dog";
 	std::cout << "Dog's default constructor called\n";
 }
 
-Dog::Dog (const Dog& other): A_Animal(other){
+Dog::Dog (const Dog& other): AAnimal(other){
 	_dogBrain = new Brain(*other._dogBrain);
 	std::cout << "Dog's copy constructor called \n";
 }
 
 Dog& Dog::operator=(const Dog& other){
 	if (this != &other){
-		A_Animal::operator=(other);
+		AAnimal::operator=(other);
 		delete _dogBrain;
 		_dogBrain = new Brain(*other._dogBrain);
 	}

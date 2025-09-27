@@ -1,7 +1,7 @@
-NAME = theworldonfire
+NAME = interfaceandrecap
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++11 -MMD -MP
-SRC = main.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
+SRC = main.cpp AMateria.cpp
 OBJ_DIR = obj
 OBJ = $(SRC:%.cpp=$(OBJ_DIR)/%.o)
 DEP = $(OBJ:.o=.d)
