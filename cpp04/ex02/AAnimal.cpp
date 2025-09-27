@@ -23,6 +23,7 @@ const std::string& AAnimal::getType()const{
 	return _type;
 }
 
+//Optional, left on purpose
 void AAnimal::makeSound()const{
 	std::cout << "This is a generic AAnimal without sound\n";
 }
