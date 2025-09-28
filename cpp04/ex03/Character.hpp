@@ -10,7 +10,7 @@ class Character : public ICharacter{
 		AMateria* _inventory[4];
 
 		AMateria* _floorItems[100];
-		unsigned int _floorItemsIndex;
+		int _floorItemsIndex;
 
 	public:
 		Character();
