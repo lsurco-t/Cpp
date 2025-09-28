@@ -10,18 +10,25 @@ Character::Character(const std::string& name): _name(name), _floorItemsIndex(0){
     for (int i = 0; i < 100; i++) _floorItems[i] = nullptr;
 }
 
-Character::Character(const Character& other) :_name(other._name){
+Character::Character(const Character& other) :_name(other._name), _floorItemsIndex(0){
 	for (int i = 0; i < 4; i++){
 		if (other._inventory[i])
 			_inventory[i] = other._inventory[i]->clone();
 		else
 			_inventory[i] = nullptr;
 	}
+	for (int i = 0; i < 100; i++) 
+        _floorItems[i] = nullptr;
 }
 
 Character& Character::operator=(const Character& other){
 	if (this != &other){
 		_name = other._name;
+		for (int i = 0; i < _floorItemsIndex; i++)
+			delete _floorItems[i];
+		_floorItemsIndex = 0;
+		for (int i = 0; i < 100; i++) 
+			_floorItems[i] = nullptr;
 		for (int i = 0; i < 4; i++){
 			delete _inventory[i];
 			if (other._inventory[i])
@@ -52,6 +59,7 @@ void Character::equip(AMateria* m){
 			_inventory[i] = m;
 			return ;
 		}
+	delete m;
 }
 
 void Character::unequip(int idx){
