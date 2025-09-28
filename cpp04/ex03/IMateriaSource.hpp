@@ -2,8 +2,7 @@
 #include <iostream>
 #include "AMateria.hpp"
 
-class IMateriaSource
-{
+class IMateriaSource {
 	public:
 		virtual ~IMateriaSource() {}
 		virtual void learnMateria(AMateria*) = 0;

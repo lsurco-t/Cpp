@@ -9,4 +9,7 @@ class MateriaSource{
 		MateriaSource(const MateriaSource& other);
 		MateriaSource& operator=(const MateriaSource other);
 		~MateriaSource();
+
+		void learnMateria(AMateria*);
+		void createMateria(std::string const &);
 };

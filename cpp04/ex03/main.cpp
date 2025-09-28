@@ -1,7 +1,6 @@
 #include <iostream>
 #include "Character.hpp"
 #include "MateriaSource.hpp"
-#include "AMateria.hpp"
 #include "Cure.hpp"
 #include "Ice.hpp"
 
