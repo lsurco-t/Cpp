@@ -9,6 +9,9 @@ class Character : public ICharacter{
 		std::string _name;
 		AMateria* _inventory[4];
 
+		AMateria* _floorItems[100];
+		unsigned int _floorItemsIndex;
+
 	public:
 		Character();
 		Character(const std::string& name);
