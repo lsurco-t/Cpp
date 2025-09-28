@@ -2,9 +2,7 @@
 #include "AMateria.hpp"
 #include <iostream>
 
-class Cure {
-
-	private:
+class Cure : public AMateria{
 
 	public:
 		Cure();
@@ -12,6 +10,6 @@ class Cure {
 		Cure& operator=(const Cure& other);
 		~Cure();
 
-		AMateria* clone() const;
-
+		AMateria* clone() const override;
+		void use(ICharacter& target) override;
 };
