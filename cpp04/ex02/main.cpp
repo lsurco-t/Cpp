@@ -7,16 +7,16 @@
 int main(){
 
 	//Subject default's test
-	std::cout << "\033[33m---------Subject Tests---------\033[0m\n";
+	std::cout << "\033[33m==========Subject Tests==========\033[0m\n";
 	const AAnimal* j = new Dog();
 	const AAnimal* i = new Cat();
 
-	std::cout << "\033[31m-----Calling destructors-----\033[0m\n";
+	std::cout << "\033[31m========Calling destructors========\033[0m\n";
 	delete j;//should not create a leak
 	delete i;
 
 	//Own tests
-	std::cout << "\n\033[33m---------Extra Tests---------\033[0m\n";
+	std::cout << "\n\033[33m==========Extra Tests==========\033[0m\n";
 	size_t amount = 10;
 	AAnimal* zoo[amount];
 	for (size_t i = 0; i < amount; i++){	
@@ -28,7 +28,7 @@ int main(){
 	for (size_t i = 0; i < amount; i++){
 		zoo[i]->makeSound();
 	}
-	std::cout << "\033[31m-----Calling destructors-----\033[0m\n";
+	std::cout << "\033[31m========Calling destructors========\033[0m\n";
 	for (size_t i = 0; i < amount; i ++)
 		delete zoo[i] ;
 	return 0;
