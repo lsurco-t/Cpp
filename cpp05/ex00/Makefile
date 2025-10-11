@@ -1,4 +1,4 @@
-NAME = bureaucrat
+NAME = bureaucrats
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++11 -MMD -MP
 SRC = main.cpp Bureaucrat.cpp

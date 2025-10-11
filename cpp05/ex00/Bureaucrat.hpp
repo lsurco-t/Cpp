@@ -4,16 +4,31 @@
 class Bureaucrat {
 
 	private:
-		std::string _name;
-		unsigned int _grade;
+		const std::string _name;
+		int				  _grade;
 
 	public:
-		Bureaucrat(std::string name, unsigned int grade);
+		Bureaucrat() = delete;
+		Bureaucrat(const std::string& name, int grade);
+		Bureaucrat(const Bureaucrat& other);
+		Bureaucrat& operator=(const Bureaucrat& other) = delete;
 		~Bureaucrat();
 
-		void setName(const std::string& name);
-		void setGrade(unsigned int grade);
 		const std::string& getName(void) const;
-		const std::string& getGrade(void) const;
+		int 			   getGrade(void) const;
+
+		void setGradeHigher();
+		void setGradeLower();
+
+		class GradeTooHighException : public std::exception {
+			public:
+				const char* what() const noexcept override;
+		};
+		class GradeTooLowException  : public std::exception {
+			public:
+				const char* what() const noexcept override;
+		};
 
 };
+
+std::ostream& operator<<(std::ostream& out, const Bureaucrat& b);
