@@ -1,6 +1,7 @@
 #pragma once
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
+#include <random>
 #include <iostream>
 
 class RobotomyRequestForm : public AForm{
