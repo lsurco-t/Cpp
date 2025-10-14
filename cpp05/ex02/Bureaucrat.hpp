@@ -1,5 +1,5 @@
 #pragma once
-#include "Form.hpp"
+#include "AForm.hpp"
 #include <iostream>
 
 class Bureaucrat {
@@ -20,7 +20,7 @@ class Bureaucrat {
 
 		void setGradeHigher();
 		void setGradeLower();
-		void signForm(Form &form);
+		void signForm(AForm &form);
 
 		class GradeTooHighException : public std::exception {
 			public:
@@ -30,6 +30,8 @@ class Bureaucrat {
 			public:
 				const char* what() const noexcept override;
 		};
+
+		void executeForm(AForm const & form);
 
 };
 

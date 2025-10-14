@@ -1,17 +1,20 @@
 #pragma once
+#include "Bureaucrat.hpp"
 #include "AForm.hpp"
+#include <fstream>
 #include <iostream>
 
-class ShrubberyCreationForm {
+class ShrubberyCreationForm : public AForm{
 
 	private:
-		const int _gradetoSign;
-		const int _gradetoExecute;
+		std::string _target;
 
 	public:
-		ShrubberyCreationForm();
-		ShrubberyCreationForm(Form& form);
+		ShrubberyCreationForm() = delete;
+		ShrubberyCreationForm(const std::string& target);
 		ShrubberyCreationForm(const ShrubberyCreationForm& other);
-		ShrubberyCreationForm& operator=(const ShrubberyCreationForm& other);
+		ShrubberyCreationForm& operator=(const ShrubberyCreationForm& other) = delete;
 		~ShrubberyCreationForm();
+
+		void 	execute(Bureaucrat const & executor) const override;
 };
