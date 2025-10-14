@@ -9,7 +9,9 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other)
 RobotomyRequestForm::~RobotomyRequestForm(){}
 
 void 	RobotomyRequestForm::execute(Bureaucrat const & executor) const{
-	if (executor.getGrade() > getSignGrade())
+	if (!getIsSigned())
+		throw FormIsNotSigned();
+	if (executor.getGrade() > getExecuteGrade())
 		throw AForm::GradeTooLowException();
 	std::cout << "Drilling noises Rrrrrrrrrrrrrr" << std::endl;
 	std::random_device rd;
