@@ -9,10 +9,15 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other)
 RobotomyRequestForm::~RobotomyRequestForm(){}
 
 void 	RobotomyRequestForm::execute(Bureaucrat const & executor) const{
-	if (executor.getGrade() > getSignGrade()){
+	if (executor.getGrade() > getSignGrade())
 		throw AForm::GradeTooLowException();
-		return ;
-	}
 	std::cout << "Drilling noises Rrrrrrrrrrrrrr" << std::endl;
-	
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::bernoulli_distribution robotomyChance(0.5);
+	bool success = robotomyChance(gen);
+	if (success)
+		std::cout << "Robotomy on " << this->_target << " succeeded" << std::endl;
+	else
+		std::cout << "Robotomy on " << this->_target << " failed" << std::endl;
 }
