@@ -1,6 +1,9 @@
 #pragma once
 #include "AForm.hpp"
 #include "Bureaucrat.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
 #include <iostream>
 
 class Intern {
@@ -11,5 +14,5 @@ class Intern {
 		Intern& operator=(const Intern& other);
 		~Intern();
 
-		void makeForm(const AForm& form, const std::string& target);
+		AForm* makeForm(const std::string& formName, const std::string& target);
 };

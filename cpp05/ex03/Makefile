@@ -2,7 +2,7 @@ NAME = coffeeMaking
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++11 -MMD -MP
 SRC = main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp \
-	  ShrubberyCreationForm.cpp RobotomyRequestForm.cpp
+	  ShrubberyCreationForm.cpp RobotomyRequestForm.cpp Intern.cpp
 OBJ_DIR = obj
 OBJ = $(SRC:%.cpp=$(OBJ_DIR)/%.o)
 DEP = $(OBJ:.o=.d)
