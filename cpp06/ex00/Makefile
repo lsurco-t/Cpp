@@ -1,7 +1,7 @@
 NAME = converter
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++11 -MMD -MP
-SRC = main.cpp
+SRC = main.cpp ScalarConverter.cpp
 OBJ_DIR = obj
 OBJ = $(SRC:%.cpp=$(OBJ_DIR)/%.o)
 DEP = $(OBJ:.o=.d)
