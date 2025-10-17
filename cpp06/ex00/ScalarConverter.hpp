@@ -3,6 +3,8 @@
 
 class ScalarConverter {
 
+	private:
+	
 	public:
 		ScalarConverter();
 		ScalarConverter(const ScalarConverter& other);
