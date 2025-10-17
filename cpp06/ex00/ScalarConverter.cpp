@@ -1,11 +1,9 @@
 #include "ScalarConverter.hpp"
 
-ScalarConverter::ScalarConverter(){}
-
-ScalarConverter::ScalarConverter(const ScalarConverter& other){}
-
-ScalarConverter& ScalarConverter::operator=(const ScalarConverter& other){}
-
-ScalarConverter::~ScalarConverter(){}
-
-void ScalarConverter::convert() const{}
+static void convert(const std::string& parameter){
+	
+	std::cout << "Char: " << std::endl;
+	std::cout << "Int: " << std::endl;
+	std::cout << "Float: " << std::endl;
+	std::cout << "Double: " << std::endl;
+}
