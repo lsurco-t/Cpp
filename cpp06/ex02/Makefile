@@ -1,7 +1,7 @@
 NAME = realtype
-CC = c++
-CFLAGS = -Wall -Werror -Wextra -std=c++11 -MMD -MP
-SRC = main.cpp
+CXX = c++
+CXXFLAGS = -Wall -Werror -Wextra -std=c++11 -MMD -MP
+SRC = main.cpp ScalarConverter.cpp
 OBJ_DIR = obj
 OBJ = $(SRC:%.cpp=$(OBJ_DIR)/%.o)
 DEP = $(OBJ:.o=.d)
@@ -9,10 +9,10 @@ DEP = $(OBJ:.o=.d)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
+	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJ)
 
 $(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)

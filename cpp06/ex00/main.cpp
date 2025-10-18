@@ -1,17 +1,20 @@
 #include "ScalarConverter.hpp"
 
+#define SUCCESS 0
+#define FAILURE 1
+
 int main(int argc, char **argv){
 
 	if (argc != 2){
 		std::cout << "Invalid number of arguments!" << std::endl;
-		return 0;
+		return FAILURE;
 	}
 	try{
-		std::string valueToConvert = argv[1];
-		ScalarConverter::convert(valueToConvert);
+		ScalarConverter::convert(argv[1]);
 	}
 	catch (const std::exception &e){
 		std::cout << e.what() << std::endl;
+		return FAILURE;
 	}
-	return 0;
+	return SUCCESS;
 }

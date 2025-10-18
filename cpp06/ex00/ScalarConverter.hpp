@@ -1,6 +1,10 @@
 #pragma once
+#include <climits>
 #include <iostream>
 #include <string>
+#include <cfloat>
+#include <cmath>
+#include <iomanip>
 
 class ScalarConverter {
 
