@@ -44,6 +44,8 @@ void ScalarConverter::convert(const std::string& parameter){
 			std::cout << "float: nanf" << std::endl;
 		else if (std::isinf(floatCheck))
 			std::cout << "float: " << (floatCheck < 0 ? "-inff" : "inff") << std::endl;
+		else if (floatCheck > FLT_MAX || floatCheck < -FLT_MAX)
+			std::cout << "float: impossible" << std::endl;
 		else
 			std::cout << "float: " << static_cast<float>(floatCheck) << "f" << std::endl;
 	} catch (std::exception &e){
