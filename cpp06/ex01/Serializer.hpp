@@ -1,8 +1,7 @@
 #pragma once
 #include <cstdint>
-#include <iostream>
 
-typedef struct Data;
+struct Data;
 
 class Serializer {
 
