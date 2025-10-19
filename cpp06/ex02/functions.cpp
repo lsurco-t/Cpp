@@ -35,7 +35,7 @@ void identify(Base* p){
 void identify(Base& p){
 	try {
 		dynamic_cast<A&>(p);
-		std::cout << "object is A" << std::endl;
+		std::cout << "Object is A" << std::endl;
 		return ;
 	} catch (std::bad_cast&){}
 
