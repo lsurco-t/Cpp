@@ -1,7 +1,6 @@
 #pragma once
+#include "Data.hpp"
 #include <cstdint>
-
-struct Data;
 
 class Serializer {
 

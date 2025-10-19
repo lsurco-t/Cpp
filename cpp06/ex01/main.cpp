@@ -1,12 +1,6 @@
 #include "Serializer.hpp"
 #include <iostream>
 
-struct Data {
-	int 		id;
-	std::string name;
-	long 		phoneNumber;
-};
-
 int main(void){
 
 	Data topSecret;
