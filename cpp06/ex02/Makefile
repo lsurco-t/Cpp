@@ -1,7 +1,7 @@
 NAME = realtype
 CXX = c++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++11 -MMD -MP
-SRC = main.cpp A.cpp B.cpp C.cpp Base.cpp
+SRC = main.cpp Base.cpp functions.cpp
 OBJ_DIR = obj
 OBJ = $(SRC:%.cpp=$(OBJ_DIR)/%.o)
 DEP = $(OBJ:.o=.d)
