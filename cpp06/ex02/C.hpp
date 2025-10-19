@@ -1,9 +1,4 @@
 #pragma once
+#include "Base.hpp"
 
-class C {
-
-	private:
-
-	public:
-	
-};
+class C : public Base {};

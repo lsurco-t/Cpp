@@ -1,9 +1,7 @@
 #pragma once
 
 class Base {
-
-	private:
-
-	public:
 	
+	public:
+		virtual ~Base();	
 };
