@@ -11,6 +11,8 @@ int main(void){
 	::swap( a, b );
 	std::cout << "\n\033[32mAfter swap\033[0m" << std::endl;
 	std::cout << "a = " << a << ", b = " << b << std::endl;
+
+	std::cout << "\033[32mCalculate min and max\033[0m" << std::endl;
 	std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
 	std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl << std::endl;
 	std::string c = "chaine1";
@@ -24,13 +26,13 @@ int main(void){
 	std::cout << "\n\033[32mParameters:\033[0m" << std::endl;
 	float nbrOne = 2.4f;
 	float nbrTwo = 3.5f;
-	std::cout << "First number = " << nbrOne << ", Second number = " << nbrTwo << std::endl;	
+	std::cout << "f = " << nbrOne << ", g = " << nbrTwo << std::endl;	
 	::swap(nbrOne, nbrTwo);
 	std::cout << "\n\033[32mAfter swap\033[0m" << std::endl;
-	std::cout << "First number = " << nbrOne << ", Second number = " << nbrTwo << std::endl;
+	std::cout << "f = " << nbrOne << ", g = " << nbrTwo << std::endl;
 	std::cout << "\033[32mCalculate min and max\033[0m" << std::endl;
-	std::cout << "min( First N, Second N ) = " << ::min( nbrOne, nbrTwo ) << std::endl;
-	std::cout << "max( First N, Second N ) = " << ::max( nbrOne, nbrTwo ) << std::endl << std::endl;
+	std::cout << "min( f, g ) = " << ::min( nbrOne, nbrTwo ) << std::endl;
+	std::cout << "max( f, g ) = " << ::max( nbrOne, nbrTwo ) << std::endl << std::endl;
 	
 	return 0;
 }
