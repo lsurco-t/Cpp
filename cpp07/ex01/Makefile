@@ -1,6 +1,6 @@
 NAME = iter
 CXX = c++
-CXXFLAGS = -Wall -Werror -Wextra -std=c++11 -MMD -MP
+CXXFLAGS = -Wall -Werror -Wextra -std=c++17 -MMD -MP
 SRC = main.cpp 
 OBJ_DIR = obj
 OBJ = $(SRC:%.cpp=$(OBJ_DIR)/%.o)
