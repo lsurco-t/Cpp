@@ -1,6 +1,6 @@
 #pragma once
 
 template<typename T>
-void iter (const T& a, const T& b, const T& c){
+void iter (T* address, size_t length, T& fun){
 
 }
