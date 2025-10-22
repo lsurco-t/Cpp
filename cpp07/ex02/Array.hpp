@@ -6,7 +6,8 @@ class Array{
 	private:
 
 	public:
-		Array();
+		Array(T[]);
+		Array(unsigned n, T[n]);
 		Array(const Array& other);
 		Array& operator=(const Array& other);
 		~Array();
