@@ -9,8 +9,8 @@ class Array{
 
 	public:
 		Array();
-		Array(const Array& other);
-		Array& operator=(const Array& other);
+		Array(const Array<T>& other);
+		Array<T>& operator=(const Array<T>& other);
 		~Array();
 
 		Array(unsigned n);
@@ -18,3 +18,5 @@ class Array{
 		const T& operator[](unsigned int index) const;
 		unsigned int size(void);
 };
+
+#include "Array.tpp"

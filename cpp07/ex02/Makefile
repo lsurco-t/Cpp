@@ -1,7 +1,7 @@
 NAME = array
 CXX = c++
 CXXFLAGS = -Wall -Werror -Wextra -std=c++11 -MMD -MP
-SRC = main.cpp
+SRC = main.cpp Array.tpp
 OBJ_DIR = obj
 OBJ = $(SRC:%.cpp=$(OBJ_DIR)/%.o)
 DEP = $(OBJ:.o=.d)
