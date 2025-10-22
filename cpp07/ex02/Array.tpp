@@ -1,5 +1,5 @@
 #include "Array.hpp"
-#include <exception>
+#include <stdexcept>
 
 template<typename T>
 Array<T>::Array(): _array(nullptr), _size(0){}
@@ -27,23 +27,23 @@ Array<T>::~Array(){
 }
 
 template<typename T>
-Array<T>::Array(unsigned n): _array(new T[n]), _size(n){}
+Array<T>::Array(unsigned n): _array(new T[n]()), _size(n){}
 
 template<typename T>
 T& Array<T>::operator[](unsigned int index){
 	if (index >= _size)
-		throw std::exception("Out of bounds!");
+		throw std::out_of_range("Out of bounds!");
 	return _array[index];
 }
 
 template<typename T>
 const T& Array<T>::operator[](unsigned int index) const{
 	if (index >= _size)
-		throw std::exception("Out of bounds!");
+		throw std::out_of_range("Out of bounds!");
 	return _array[index];
 }
 
 template<typename T>
-unsigned int Array<T>::size(void){
+unsigned int Array<T>::size(void) const{
 	return _size;
 }
