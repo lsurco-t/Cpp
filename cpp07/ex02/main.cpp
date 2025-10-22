@@ -34,14 +34,21 @@ int main(void){
 	std::cout << "Original: " << numbers[1] << std::endl;
 	std::cout << "Copy: " << assigned[1] << std::endl;
 
-	std::cout << GREEN "===== Test 6: Out of bounds =====" RESET << std::endl;
+	std::cout << GREEN "===== Test 6: Write out of bounds =====" RESET << std::endl;
 	try {
 		numbers[42] = 42;
 	} catch(std::exception &e){
 		std::cout << "Limits error: " << e.what() << std::endl;
 	}
 
-	std::cout << GREEN "===== Test 7: String array =====" RESET << std::endl;
+	std::cout << GREEN "===== Test 7: Read out of bounds =====" RESET << std::endl;
+	try {
+		std::cout << numbers[8] << std::endl;
+	} catch(std::exception &e){
+		std::cout << "Limits error: " << e.what() << std::endl;
+	}
+
+	std::cout << GREEN "===== Test 8: String array =====" RESET << std::endl;
 	Array<std::string> words(3);
 	words[0] = "Hello";
 	words[1] = "Hivers";

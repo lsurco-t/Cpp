@@ -5,8 +5,10 @@ template<typename T>
 Array<T>::Array(): _array(nullptr), _size(0){}
 
 template<typename T>
-Array<T>::Array(const Array& other) : _array(nullptr), _size(0){
-	*this = other;
+Array<T>::Array(const Array& other) 
+	: _array(new T[other._size]()), _size(other._size){
+	for(unsigned int i = 0; i < _size; i++)
+		_array[i] = other._array[i];
 }
 
 template<typename T>
