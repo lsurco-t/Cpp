@@ -1,7 +1,8 @@
 #pragma once
 #include <algorithm>
+#include <list>
 
 template<typename T>
-T& easyfind(const T& a, const T& b){
-
+int easyfind(const T& a, const int b){
+	
 }
