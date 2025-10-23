@@ -2,12 +2,6 @@
 #include <algorithm>
 
 template<typename T>
-class easyfind {
+T& easyfind(const T& a, const T& b){
 
-	private:
-
-	public:
-
-};
-
-#include "easyfind.tpp"
+}
