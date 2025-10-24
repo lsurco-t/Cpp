@@ -10,7 +10,7 @@
 
 int main(void){
 
-	std::cout << GREEN "===== First test: Valid number to find =====" RESET << std::endl;
+	std::cout << GREEN "===== First test: Valid number to find in list =====" RESET << std::endl;
 	std::list<int> firstList = {1, 2, 3, 4, 5};
 	try{
 		std::cout << "Elements of list: ";
@@ -23,7 +23,7 @@ int main(void){
 		std::cout << "Error: " << e.what() << std::endl;
 	}
 
-	std::cout << GREEN "\n===== Second test: Invalid number to find =====" RESET << std::endl;
+	std::cout << GREEN "\n===== Second test: Invalid number to find in list =====" RESET << std::endl;
 	try{
 		std::list<int>::iterator it = ::easyfind(firstList, 10);
 		std::cout << "The value found is: " << *it << std::endl; 
