@@ -1,5 +1,6 @@
 #include "Span.hpp"
 #include <iostream>
+#include <random>
 
 #define RED "\033[31m"
 #define GREEN "\033[32m"
@@ -36,8 +37,11 @@ int main(void){
     try {
         Span sp3(10);
         std::vector<int> values = {5, 1, 9, 3, 12, 20};
+        std::cout << GREEN "Vector numbers: " RESET;
+        for (size_t i = 0; i < values.size(); i++)
+            std::cout << values[i] << " ";
         sp3.addManyNumbers(values.begin(), values.end());
-        std::cout << "Shortest span: " << sp3.shortestSpan() << std::endl;
+        std::cout << "\nShortest span: " << sp3.shortestSpan() << std::endl;
         std::cout << "Longest span: " << sp3.longestSpan() << std::endl;
     }
     catch (const std::exception& e) {
@@ -59,12 +63,20 @@ int main(void){
     try{
         unsigned int vectorSize = 10000;
         std::vector<int> bigVector (vectorSize);
+
+        std::random_device rd;
+        std::mt19937 gen(rd());
+        std::uniform_int_distribution<unsigned int> dist(1, 10000);
         for (size_t i = 0; i < vectorSize; i++)
-            bigVector[i] = i;
+            bigVector[i] = dist(gen);
         
         Span sp5(vectorSize);
+        
+        std::cout << GREEN "Vector numbers: " RESET;
+        for (size_t i = 0; i < vectorSize; i++)
+            std::cout << bigVector[i] << " ";
         sp5.addManyNumbers(bigVector.begin(), bigVector.end());
-        std::cout << "Shortest span: " << sp5.shortestSpan() << std::endl;
+        std::cout << "\nShortest span: " << sp5.shortestSpan() << std::endl;
         std::cout << "Longest span: " << sp5.longestSpan() << std::endl;
         
     }
