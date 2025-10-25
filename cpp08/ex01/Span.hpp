@@ -2,7 +2,6 @@
 #include <climits>
 #include <iostream>
 #include <algorithm>
-#include <random>
 #include <vector>
 
 class Span {
@@ -32,7 +31,7 @@ class Span {
 			for (T it = start; it != end; it++)
 				addNumber(*it);
 		}
-		
+
 		//Exception classes
 		class emptyContainer : public std::exception {
 			public:
