@@ -1,6 +1,8 @@
 #include "MutantStack.hpp"
 #include <iostream>
+#include <list>
 
+#define YELLOW "\033[33m"
 #define RED "\033[31m"
 #define GREEN "\033[32m"
 #define RESET "\033[0m"
@@ -10,32 +12,47 @@ void variedTests(unsigned int testNumber){
 		case 1: {
 			std::cout << GREEN "=====Test 1: Subject's test =====" RESET << std::endl;
 			MutantStack<int> mstack;
-
 			mstack.push(5);
 			mstack.push(17);
-
 			std::cout << "Top of stack number: " << mstack.top() << std::endl;
-			mstack.pop(); //used to remove the top element from the stack
-
+			mstack.pop();
 			std::cout << "Stack size is: " << mstack.size() << std::endl;
-
 			mstack.push(3);
 			mstack.push(5);
 			mstack.push(737);
 			//[...]
 			mstack.push(0);
-
 			MutantStack<int>::iterator it = mstack.begin();
 			MutantStack<int>::iterator ite = mstack.end();
-
 			++it;
 			--it;
 			while (it != ite){
 				std::cout << *it << std::endl;
 				++it;
 			}
-
 			std::stack<int> s(mstack);
+
+			std::cout << YELLOW "Part B: testing same code with a list container" RESET << std::endl;
+			std::list<int> listOne;
+			listOne.push_back(5);
+			listOne.push_back(17);
+			std::cout << "Last element of List: " << listOne.back() << std::endl;
+			listOne.pop_back();
+			std::cout << "Stack size is: " << listOne.size() << std::endl;
+			listOne.push_back(3);
+			listOne.push_back(5);
+			listOne.push_back(737);
+			//[...]
+			listOne.push_back(0);
+			std::list<int>::iterator itList = listOne.begin();
+			std::list<int>::iterator iteList = listOne.end();
+			++itList;
+			--itList;
+			while (itList != iteList){
+				std::cout << *itList << std::endl;
+				++itList;
+			}
+			std::list<int> sList(listOne);
 			break;
 		}
 
