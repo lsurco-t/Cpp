@@ -1,7 +1,7 @@
 NAME = PmergeMe
 CXX = c++
-CXXFLAGS = -Wall -Werror -Wextra -std=c++17 -MMD -MP
-SRC = main.cpp
+CXXFLAGS = -Wall -Werror -Wextra -std=c++20 -MMD -MP
+SRC = main.cpp PmergeMe.cpp
 OBJ_DIR = obj
 OBJ = $(SRC:%.cpp=$(OBJ_DIR)/%.o)
 DEP = $(OBJ:.o=.d)
