@@ -2,10 +2,6 @@
 #include <fstream>
 #include <iostream>
 
-// General error codes return
-constexpr int FAILURE = 1;
-constexpr int SUCCESS = 0;
-
 int main(int argc, char **argv){
 	if (argc != 2){
 		std::cout << "Invalid number of arguments\n";

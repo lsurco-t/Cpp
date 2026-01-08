@@ -2,13 +2,18 @@
 #include <algorithm>
 #include <iostream>
 #include <filesystem>
+#include <fstream>
+#include <string>
 #include <map>
+
+// General error codes return
+constexpr int FAILURE = 1;
+constexpr int SUCCESS = 0;
 
 class BitcoinExchange{
 
 	private:
-		std::map<int, int> _trades;
-
+		std::map<std::string, double> _database;
 		bool returnErrMessage(unsigned int reason, const std::string& file);
 
 	public:
@@ -17,7 +22,8 @@ class BitcoinExchange{
 		BitcoinExchange& operator=(const BitcoinExchange& other) = default;
 		~BitcoinExchange() = default;
 
-		bool 			isValidFile(const std::string& file);
-		unsigned int	matchPrice(std::string_view input, std::string_view database);
-		void 			displayOutput(std::string_view input, unsigned int price);
+		bool	isValidFile(const std::string& filename);
+		void	loadDatabase(const std::string& filename);
+		void 	processLine(const std::string& line);
+		double	getExchangeRate(const std::string& date) const;
 };
