@@ -14,15 +14,16 @@ class BitcoinExchange{
 
 	private:
 		std::map<std::string, double> _database;
-		bool returnErrMessage(unsigned int reason, const std::string& file);
-
+		
 	public:
 		BitcoinExchange() = default;
 		BitcoinExchange(const BitcoinExchange& other) = default;
 		BitcoinExchange& operator=(const BitcoinExchange& other) = default;
 		~BitcoinExchange() = default;
 
+		bool 	returnErrMessage(unsigned int reason, const std::string& file);
 		bool	isValidFile(const std::string& filename);
+		bool	isValidDate(const std::string date);
 		void	loadDatabase(const std::string& filename);
 		void 	processLine(const std::string& line);
 		double	getExchangeRate(const std::string& date) const;
