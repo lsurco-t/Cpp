@@ -74,7 +74,7 @@ double	BitcoinExchange::getExchangeRate(const std::string& date) const {
 
 }
 
-bool	BitcoinExchange::isValidDate(const std::string& date, const std::string& separator){	
+bool	BitcoinExchange::isValidDate(const std::string& date){	
 	
 		if (date.length() != 10 || date[4] != '-' || date[7] != '-'){
 			std::cout << "Error: wrong date format\n";

@@ -23,7 +23,7 @@ class BitcoinExchange{
 
 		bool 	returnErrMessage(unsigned int reason, const std::string& file);
 		bool	isValidFile(const std::string& filename);
-		bool	isValidDate(const std::string date);
+		bool	isValidDate(const std::string& date);
 		void	loadDatabase(const std::string& filename);
 		void 	processLine(const std::string& line);
 		double	getExchangeRate(const std::string& date) const;
