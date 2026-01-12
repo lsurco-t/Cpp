@@ -9,7 +9,7 @@ int main(int argc, char **argv){
 	}
 	try {
 		BitcoinExchange newExchange;
-		if (!newExchange.isValidFile(argv[1])){
+		if (!newExchange.isValidFile(argv[1]) || !newExchange.isValidFile("data.csv")){
 			return FAILURE;
 		}
 		newExchange.loadDatabase("data.csv");
