@@ -11,32 +11,28 @@ void	BitcoinExchange::loadDatabase(const std::string& filename){
 	std::string line;
 	std::ifstream input(filename);
 	if (!input){
-		std::cout << "Error: could not open database file\n";
 		return;
 	}
 	std::getline(input, line);
 	while(std::getline(input, line)){
 		size_t comma = line.find(',');
 		if (comma == std::string::npos){
-			std::cout << "Error: bad format found\n";
-			return;
+			continue;
 		}
 		std::string date = line.substr(0, comma);
 		std::string value = line.substr(comma + 1);
-		try {
-			size_t pos;
-			double numericValue = stod(value, &pos);
-			if (pos != value.length()){
-				std::cout << "Error: invalid characters found in value\n";
-				return;
-			}
-			if (numericValue < 0){
-				std::cout << "Error: negative value found\n";
-				return ;
-			}
-		} catch (std::exception &except) {
-			throw except.what();
+		if (!isValidDate(date)){
+			continue;
 		}
+		size_t pos;
+		double numericValue = stod(value, &pos);
+		if (pos != value.length()){
+			continue;
+		}
+		if (numericValue < 0){
+			continue;
+		}
+		_database[date] = numericValue;
 	}
 }
 
@@ -71,15 +67,14 @@ void 	BitcoinExchange::processLine(const std::string& line){
 }
 
 double	BitcoinExchange::getExchangeRate(const std::string& date) const {
-
+	
 }
 
-bool	BitcoinExchange::isValidDate(const std::string& date){	
-	
-		if (date.length() != 10 || date[4] != '-' || date[7] != '-'){
-			std::cout << "Error: wrong date format\n";
-			return;
-		}
+bool	BitcoinExchange::isValidDate(const std::string& date){
+	if (date.length() != 10 || date[4] != '-' || date[7] != '-'){
+		std::cout << "Error: wrong date format => " + date << '\n';
+		return false;
+	}
 }
 
 bool BitcoinExchange::isValidFile(const std::string& filename){

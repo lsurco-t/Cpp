@@ -12,6 +12,7 @@ int main(int argc, char **argv){
 		if (!newExchange.isValidFile(argv[1])){
 			return FAILURE;
 		}
+		newExchange.loadDatabase("data.csv");
 	} catch (std::exception &e){
 		std::cout << e.what() << '\n';	
 	}
