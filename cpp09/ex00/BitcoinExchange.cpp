@@ -68,11 +68,15 @@ void 	BitcoinExchange::processLine(const std::string& line){
 			if (nbrValue <= 0){
 				std::cout << "Error: not a positive number.\n";
 				return;
-			} else if (nbrValue >= 1000){
+			} else if (nbrValue > 1000){
 				std::cout << "Error: too large a number.\n";
 				return;
 			}
 			double rate = getExchangeRate(date);
+			if (rate < 0){
+				std::cout << "Error: no data available for this date.\n";
+				return;
+			}
 			double result = nbrValue * rate;
 			std::cout << date << " => " << nbrValue << " = " << result << std::endl;
 		} catch (std::exception &e){
@@ -134,8 +138,7 @@ bool BitcoinExchange::isValidFile(const std::string& filename){
 	if (!std::filesystem::exists(filename, ec)){
 		return returnErrMessage(NOT_EXIST, filename);
 	}
-	else if ((perms & std::filesystem::perms::owner_read) == std::filesystem::perms::none &&
-				(perms & std::filesystem::perms::owner_write) == std::filesystem::perms::none){
+	else if ((perms & std::filesystem::perms::owner_read) == std::filesystem::perms::none){
 		return returnErrMessage(WRONG_PERMS, filename);
 	}
 	else if (std::filesystem::is_directory(filename, ec)){
