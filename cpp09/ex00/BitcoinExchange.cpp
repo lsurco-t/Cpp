@@ -13,80 +13,117 @@ void	BitcoinExchange::loadDatabase(const std::string& filename){
 	if (!input){
 		return;
 	}
-	std::getline(input, line);
+	std::getline(input, line); // Skip header
 	while(std::getline(input, line)){
+		if (line.empty()){
+			continue; // Skip blank lines
+		}
 		size_t comma = line.find(',');
-		if (comma == std::string::npos){
-			continue;
+		if (comma == std::string::npos || comma == 0 || comma == line.length() - 1){
+			continue; // Skip malformed lines
 		}
 		std::string date = line.substr(0, comma);
 		std::string value = line.substr(comma + 1);
-		if (!isValidDate(date)){
-			continue;
+		try {
+			double numericValue = std::stod(value);
+			_database[date] = numericValue;
+		} catch (const std::exception&) {
+			continue; // Skip unparseable values
 		}
-		size_t pos;
-		double numericValue = stod(value, &pos);
-		if (pos != value.length()){
-			continue;
-		}
-		if (numericValue < 0){
-			continue;
-		}
-		_database[date] = numericValue;
 	}
 }
 
-// void 	BitcoinExchange::processLine(const std::string& line){
-	// std::ifstream input(filename);
-	// std::getline(input, line);
-	// while(std::getline(input, line)){
-	// 	std::istringstream ss(line);
-	// 	std::string pipe;
-	// 	std::string date;
-	// 	std::string value;
+void	BitcoinExchange::processInputFile(const std::string& filename){
+	std::string	  line;
+	std::ifstream input(filename);
+	std::getline(input, line);
+	while(std::getline(input, line)){
+		if (line.empty()){
+			continue;
+		}
+		processLine(line);
+	}
+}
 
-	// 	ss >> date >> pipe >> value;
-	// 	double	nbrValue = stod(value);
+void 	BitcoinExchange::processLine(const std::string& line){
+		std::string date;
+		std::string pipe;
+		std::string value;
+		std::istringstream ss(line);
+		ss >> date >> pipe >> value;
+		if (ss.fail() || date.empty() || pipe.empty() || value.empty()){
+			std::cout << "Error: bad input => " << line << '\n';
+			return;
+		}
+		try {
+			if (!isValidDate(date)){
+				std::cout << "Error: bad input => " << line << '\n';
+				return;
+			}
+			if (pipe != "|"){
+				std::cout << "Error: bad input => " << line << '\n';
+				return;
+			}
+			double	nbrValue = stod(value);
+			if (nbrValue <= 0){
+				std::cout << "Error: not a positive number.\n";
+				return;
+			} else if (nbrValue >= 1000){
+				std::cout << "Error: too large a number.\n";
+				return;
+			}
+			double rate = getExchangeRate(date);
+			double result = nbrValue * rate;
+			std::cout << date << " => " << nbrValue << " = " << result << std::endl;
+		} catch (std::exception &e){
+			std::cout << "Error: too large a number.\n";
+			return;
+		}
+}
 
-	// 	if (!isValidDate(date)){
-	// 		std::cout << "Error: wrong date format\n";
-	// 		return;
-	// 	}
-	// 	if (pipe != "|"){
-	// 		std::cout << "Error: incorrect separator used\n";
-	// 		return ;
-	// 	}
-	// 	if (nbrValue <= 0){
-	// 		std::cout << "Error: value must be positive\n";
-	// 		return ;
-	// 	} else if (nbrValue >= 1000){
-	// 		std::cout << "Error: value must be less than 1000\n";
-	// 	}
-	// }	
-//}
-
-// double	BitcoinExchange::getExchangeRate(const std::string& date) const {
-	
-// }
+double	BitcoinExchange::getExchangeRate(const std::string& date) const {
+	auto it = _database.upper_bound(date);
+	if (it == _database.begin()){
+		return -1;
+	}
+	--it;
+	return it->second;
+}
 
 bool	BitcoinExchange::isValidDate(const std::string& date){
-	int year = std::stoi(date.substr(0, 4));
-	int month = std::stoi(date.substr(5, 2));
-	int day = std::stoi(date.substr(8, 2));
-
 	// Check correct format
 	if (date.length() != 10 || date[4] != '-' || date[7] != '-'){
 		return false;
 	}
-	// Check correct values
-	if (year <= 0 || (month < 0 || month > 12)){
-		return false;
-	}
-	// Check correct lenght
-	if (year){ 
+	try {
+		// Convert to numbers
+		int year = std::stoi(date.substr(0, 4));
+		int month = std::stoi(date.substr(5, 2));
+		int day = std::stoi(date.substr(8, 2));
+
+		int months[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+		// Check correct range values
+		if (year <= 0 || (month < 1 || month > 12)){
+			return false;
+		}
+
+		// Check days values
+		int maxDay = months[month - 1];
+		if (isLeapYear(year) && month == 2){
+			maxDay = 29;
+		}
+		if (day < 1 || day > maxDay){
+			return false;
+		}
+	} catch (std::exception &e) {
 		return false;
 	}
 	return true;
+}
+
+bool	BitcoinExchange::isLeapYear(int year){
+	return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
 }
 
 bool BitcoinExchange::isValidFile(const std::string& filename){

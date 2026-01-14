@@ -3,6 +3,7 @@
 #include <iostream>
 #include <filesystem>
 #include <fstream>
+#include <sstream>
 #include <string>
 #include <map>
 
@@ -24,7 +25,9 @@ class BitcoinExchange{
 		bool 	returnErrMessage(unsigned int reason, const std::string& file);
 		bool	isValidFile(const std::string& filename);
 		bool	isValidDate(const std::string& date);
+		bool	isLeapYear(int year);
 		void	loadDatabase(const std::string& filename);
 		void 	processLine(const std::string& line);
+		void	processInputFile(const std::string& filename);
 		double	getExchangeRate(const std::string& date) const;
 };
