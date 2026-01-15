@@ -25,7 +25,11 @@ void	BitcoinExchange::loadDatabase(const std::string& filename){
 		std::string date = line.substr(0, comma);
 		std::string value = line.substr(comma + 1);
 		try {
-			double numericValue = std::stod(value);
+			size_t pos = 0;
+			double numericValue = std::stod(value, &pos);
+			if (value.length() != pos){
+				continue; // Skip if not fully parsed
+			}
 			_database[date] = numericValue;
 		} catch (const std::exception&) {
 			continue; // Skip unparseable values
@@ -64,8 +68,13 @@ void 	BitcoinExchange::processLine(const std::string& line){
 				std::cout << "Error: bad input => " << line << '\n';
 				return;
 			}
-			double	nbrValue = stod(value);
-		if (nbrValue < 0){
+			size_t pos = 0;
+			double	nbrValue = stod(value, &pos);
+			if (value.length() != pos){
+				std::cout << "Error: bad input => " << line << '\n';
+				return;
+			}
+			if (nbrValue < 0){
 				std::cout << "Error: not a positive number.\n";
 				return;
 			} else if (nbrValue > 1000){
