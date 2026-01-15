@@ -65,7 +65,7 @@ void 	BitcoinExchange::processLine(const std::string& line){
 				return;
 			}
 			double	nbrValue = stod(value);
-			if (nbrValue <= 0){
+		if (nbrValue < 0){
 				std::cout << "Error: not a positive number.\n";
 				return;
 			} else if (nbrValue > 1000){
@@ -107,12 +107,12 @@ bool	BitcoinExchange::isValidDate(const std::string& date){
 
 		int months[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
-		// Check correct range values
-		if (year <= 0 || (month < 1 || month > 12)){
+		// Check year and month values
+		if (year < 2009 || (month < 1 || month > 12)){
 			return false;
 		}
 
-		// Check days values
+		// Check values of days
 		int maxDay = months[month - 1];
 		if (isLeapYear(year) && month == 2){
 			maxDay = 29;
@@ -120,7 +120,24 @@ bool	BitcoinExchange::isValidDate(const std::string& date){
 		if (day < 1 || day > maxDay){
 			return false;
 		}
-	} catch (std::exception &e) {
+
+		// Check if date is in the future
+		auto now = std::chrono::system_clock::now();
+		auto today = std::chrono::floor<std::chrono::days>(now);
+		std::chrono::year_month_day date_ymd{
+			std::chrono::year{year},
+			std::chrono::month{static_cast<unsigned>(month)},
+			std::chrono::day{static_cast<unsigned>(day)}
+		};
+		auto input_date = std::chrono::sys_days{date_ymd};
+		const std::chrono::sys_days earliestBitcoinDate = std::chrono::year{2009} / 1 / 2;
+
+		// If date is in the future or before Bitcoin existed, return false
+		if (input_date > today || input_date < earliestBitcoinDate){
+			return false;
+		}
+		
+	} catch (...) {
 		return false;
 	}
 	return true;
