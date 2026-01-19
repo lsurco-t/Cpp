@@ -1,8 +1,8 @@
 #include "RPN.hpp"
 
 bool RPN::isValidCharacter(const char& chr){
-	if ((chr == '+' && chr == '-' && chr == '/' &&
-		chr == '*' && chr == ' ') || (chr >= '0' && chr <= '9')){
+	if ((chr == '+' || chr == '-' || chr == '/' ||
+		chr == '*' || chr == 32) || (chr >= '0' && chr <= '9')){
 		return true;
 	}
 	return false;
@@ -11,6 +11,7 @@ bool RPN::isValidCharacter(const char& chr){
 int RPN::calculateRPN(const std::string& args){
 	int firstNum;
 	int secondNum;
+	int result;
 
 	for (auto n : args){
 		if (!isValidCharacter(n)){
@@ -29,7 +30,6 @@ int RPN::calculateRPN(const std::string& args){
 			}
 			secondNum = _numbers.top();
 			_numbers.pop();
-			int result;
 			switch (n){
 				case '*':
 					result = firstNum * secondNum;	
@@ -47,5 +47,6 @@ int RPN::calculateRPN(const std::string& args){
 			_numbers.push(result);
 		}
 	}
+	std::cout << result << std::endl;
 	return SUCCESS;
 }

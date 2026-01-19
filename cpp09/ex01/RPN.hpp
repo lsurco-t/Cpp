@@ -11,7 +11,7 @@ constexpr int SUCCESS = 0;
 class RPN {
 	
 	private:
-		std::stack<int, int> _numbers;
+		std::stack<int> _numbers;
 
 	public:
 		RPN() = default;
