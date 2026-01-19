@@ -87,9 +87,9 @@ void 	BitcoinExchange::processLine(const std::string& line){
 				return;
 			}
 			double result = nbrValue * rate;
-			std::cout << date << " => " << nbrValue << " = " << result << std::endl;
+			std::cout << date << " => " << nbrValue << " = " << std::setprecision(8) << result << std::endl;
 		} catch (std::exception &e){
-			std::cout << "Error: too large a number.\n";
+				std::cout << "Error: bad input => " << line << '\n';
 			return;
 		}
 }
