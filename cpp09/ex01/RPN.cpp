@@ -10,20 +10,10 @@ int RPN::calculateRPN(const std::string& args){
 
 	while (iss >> token){
 		int number = 0;
-		if (token.find_first_not_of("-0123456789") == std::string::npos && token != "-"
-				&& !token.empty()){
-			try {
-				number = std::stoi(token);
-				if (number > 9){
-					std::cerr << "Error: Invalid number: " << number << std::endl;
-					return FAILURE;
-				}
-				_numbers.push(number);
-			} catch (...){
-				std::cerr << "Error: Invalid number: " << number << std::endl;
-				return FAILURE;
-			}
-		}
+		if (token.length() == 1 && (token[0] >= '0' && token[0] <= '9')){
+			number = token[0] - '0';
+			_numbers.push(number);
+		} 
 		else if (token.length() == 1 && isValidToken(token)){
 			int firstNum = 0;
 			int secondNum = 0;
