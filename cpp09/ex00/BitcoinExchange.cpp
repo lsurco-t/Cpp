@@ -189,7 +189,7 @@ bool BitcoinExchange::returnErrMessage(unsigned int reason, const std::string& f
 			reasonStr = " does not exist\n";
 			break;
 		case WRONG_PERMS:
-			reasonStr = " has not enough perms to write or read\n";
+			reasonStr = " has not enough perms to read\n";
 	}
 	std::cout << "Error: File " << file << reasonStr;
 	return false;
