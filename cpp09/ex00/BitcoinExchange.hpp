@@ -20,8 +20,8 @@ class BitcoinExchange{
 		
 	public:
 		BitcoinExchange() = default;
-		BitcoinExchange(const BitcoinExchange& other) = default;
-		BitcoinExchange& operator=(const BitcoinExchange& other) = default;
+		BitcoinExchange(const BitcoinExchange& other) = delete;
+		BitcoinExchange& operator=(const BitcoinExchange& other) = delete;
 		~BitcoinExchange() = default;
 
 		bool 	returnErrMessage(unsigned int reason, const std::string& file);
