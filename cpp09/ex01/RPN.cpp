@@ -1,36 +1,42 @@
 #include "RPN.hpp"
 
-bool RPN::isValidCharacter(const char& chr){
-	if ((chr == '+' || chr == '-' || chr == '/' ||
-		chr == '*' || chr == ' ') || (chr >= '0' && chr <= '9')){
-		return true;
-	}
-	return false;
+bool RPN::isValidToken(const std::string& token){
+	return token[0] == '*' || token[0] == '+' || token[0] == '-' || token[0] == '/'; 
 }
 
 int RPN::calculateRPN(const std::string& args){
-	int firstNum = 0;
-	int secondNum = 0;
-	int result = 0;
+	std::istringstream iss(args);
+	std::string token;
 
-	for (auto n : args){
-		if (!isValidCharacter(n)){
-			std::cerr << "Invalid character found!\n";
-			return FAILURE;
-		}
-		if (n >= '0' && n <= '9'){
-			int number = std::atoi(&n);
-			_numbers.push(number);
-		} else if (n != ' '){
-			secondNum = _numbers.top();
-			_numbers.pop();
-			if (_numbers.size() < 1){
-				std::cerr << "Not enough numbers to calculate value\n";
+	while (iss >> token){
+		int number = 0;
+		if (token.find_first_not_of("-0123456789") == std::string::npos && token != "-"
+				&& !token.empty()){
+			try {
+				number = std::stoi(token);
+				if (number > 9){
+					std::cerr << "Error: Invalid number: " << number << std::endl;
+					return FAILURE;
+				}
+				_numbers.push(number);
+			} catch (...){
+				std::cerr << "Error: Invalid number: " << number << std::endl;
 				return FAILURE;
 			}
+		}
+		else if (token.length() == 1 && isValidToken(token)){
+			int firstNum = 0;
+			int secondNum = 0;
+			if (_numbers.size() < 2){
+				std::cerr << "Error: Not enough numbers to calculate value\n";
+				return FAILURE;
+			}
+			secondNum = _numbers.top();
+			_numbers.pop();
 			firstNum = _numbers.top();
 			_numbers.pop();
-			switch (n){
+			int result = 0;
+			switch (token[0]){
 				case '*':
 					result = firstNum * secondNum;	
 					break;
@@ -41,12 +47,23 @@ int RPN::calculateRPN(const std::string& args){
 					result = firstNum - secondNum;
 					break;
 				case '/':
+					if (secondNum == 0){
+						std::cerr << "Error: division by zero\n";
+						return FAILURE;
+					}
 					result = firstNum / secondNum;
 					break;
 			}
 			_numbers.push(result);
+		} else {
+			std::cerr << "Error: invalid token: " << token << std::endl;
+			return FAILURE;
 		}
 	}
-	std::cout << result << std::endl;
+	if (_numbers.size() != 1){
+		std::cerr << "Error: invalid expression\n";
+		return FAILURE;
+	}
+	std::cout << _numbers.top() << std::endl;
 	return SUCCESS;
 }

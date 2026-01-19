@@ -3,6 +3,7 @@
 #include <string>
 #include <algorithm>
 #include <iostream>
+#include <sstream>
 
 // General error codes return
 constexpr int FAILURE = 1;
@@ -19,6 +20,6 @@ class RPN {
 		RPN& operator=(const RPN& other) = delete;
 		~RPN() = default;
 
-		bool isValidCharacter(const char& c);
+		bool isValidToken(const std::string& token);
 		int calculateRPN(const std::string& args);
 };
