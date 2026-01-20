@@ -3,6 +3,8 @@
 #include <vector>
 #include <iostream>
 #include <string>
+#include <cstring>
+#include <set>
 
 // General error codes return
 constexpr int FAILURE = 1;
@@ -20,8 +22,9 @@ class PmergeMe {
 		PmergeMe& operator=(const PmergeMe other) = delete;
 		~PmergeMe() = default;
 
-		bool isValidSequence(int argc, const char **argv, std::vector<int> input);
+		bool isValidSequence(int argc, const char **argv, std::vector<int>& input);
 		void fordJohnsonVect(std::vector<int>& vect);
 		void fordJohnsonDeq(std::deque<int>& deq);
+		void displayResults(std::vector<int> unsorted, std::vector<int> sortedV, std::deque<int> sortedDq);
 
 };
