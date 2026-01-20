@@ -1,6 +1,6 @@
 #include "PmergeMe.hpp"
 
-bool PmergeMe::isValidSequence(int argc, const char **argv, std::vector<int>& input){
+bool PmergeMe::isValidSequence(int argc, char **argv, std::vector<int>& input){
 	std::set<int> seen;
 	for (int i = 1; i < argc; i++){
 		int number;
@@ -8,7 +8,7 @@ bool PmergeMe::isValidSequence(int argc, const char **argv, std::vector<int>& in
 		try {
 			number = std::stoi(argv[i], &pos);
 			if (pos != std::strlen(argv[i])){
-				std::cerr << "Error: " << number << " is negative" << std::endl;
+				std::cerr << "Error: " << argv[i] << " not accepted" << std::endl;
 				return false;
 			}
 			if (number < 0){
@@ -29,7 +29,22 @@ bool PmergeMe::isValidSequence(int argc, const char **argv, std::vector<int>& in
 }
 
 void PmergeMe::displayResults(std::vector<int> unsorted, std::vector<int> sortedV, std::deque<int> sortedDq){
+	std::cout << "Before: ";
+	for (auto i : unsorted){
+		std::cout << i << ' ';
+	}
+	std::cout << std::endl;
 
+	std::cout << "After: ";
+	for (auto i : sortedV){
+		std::cout << i << ' ';
+	}
+	std::cout << std::endl;
+
+	std::cout << "Time to process a range of " << sortedV.size() << " with " << "std::vector: "
+		"time " << std::endl;
+	std::cout << "Time to process a range of " << sortedDq.size() << " with " << "std::deque: "
+		"time " << std::endl;
 }
 
 void PmergeMe::fordJohnsonVect(std::vector<int>& vect){
