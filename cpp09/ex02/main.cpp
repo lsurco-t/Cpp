@@ -3,16 +3,17 @@
 int main(int argc, char **argv){
 	PmergeMe fordJohson;
 	std::vector<int> sequence;
+	std::deque<int> sequenceDeq;
 	std::chrono::nanoseconds usedTimeVec;
 	std::chrono::nanoseconds usedTimeDeq;
 
-	if (!fordJohson.isValidSequence(argc, argv, sequence)){
+	if (!fordJohson.isValidSequence(argc, argv, sequence, sequenceDeq)){
 		return FAILURE;
 	}
 	
 	try {
 		usedTimeVec = fordJohson.sortInVector(sequence);
-		usedTimeDeq = fordJohson.sortInDeque(sequence);
+		usedTimeDeq = fordJohson.sortInDeque(sequenceDeq);
 		fordJohson.displayResults(sequence, fordJohson.getVector(), fordJohson.getDeque(),
 			 usedTimeVec, usedTimeDeq);
 	} 

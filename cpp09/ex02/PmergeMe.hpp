@@ -23,13 +23,13 @@ class PmergeMe {
 		PmergeMe& operator=(const PmergeMe other) = delete;
 		~PmergeMe() = default;
 
-		bool isValidSequence(int argc, char **argv, std::vector<int>& input);
+		bool isValidSequence(int argc, char **argv, std::vector<int>& vector, std::deque<int>& deque);
 		std::chrono::nanoseconds sortInVector(std::vector<int>& input);
-		std::chrono::nanoseconds sortInDeque(std::vector<int>& input);
-		void displayResults(std::vector<int> unsorted, std::vector<int> sortedV, 
-				std::deque<int> sortedDq, std::chrono::nanoseconds& vecTime, 
+		std::chrono::nanoseconds sortInDeque(std::deque<int>& input);
+		void displayResults(std::vector<int>& unsorted, const std::vector<int>& sortedV, 
+				const std::deque<int>& sortedDq, std::chrono::nanoseconds& vecTime, 
 					std::chrono::nanoseconds& deqTime);
-		const std::vector<int> getVector(void) const;
-		const std::deque<int> getDeque(void) const;
+		const std::vector<int>& getVector(void) const;
+		const std::deque<int>& getDeque(void) const;
 
 };
