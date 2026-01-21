@@ -28,7 +28,8 @@ bool PmergeMe::isValidSequence(int argc, char **argv, std::vector<int>& input){
 	return true;
 }
 
-void PmergeMe::displayResults(std::vector<int> unsorted, std::vector<int> sortedV, std::deque<int> sortedDq){
+void PmergeMe::displayResults(std::vector<int> unsorted, std::vector<int> sortedV,
+	 std::deque<int> sortedDq, std::chrono::nanoseconds& vecTime, std::chrono::nanoseconds& deqTime ){
 	std::cout << "Before: ";
 	for (auto i : unsorted){
 		std::cout << i << ' ';
@@ -41,18 +42,25 @@ void PmergeMe::displayResults(std::vector<int> unsorted, std::vector<int> sorted
 	}
 	std::cout << std::endl;
 
-	std::cout << "Time to process a range of " << sortedV.size() << " with " << "std::vector: "
-		"time " << std::endl;
-	std::cout << "Time to process a range of " << sortedDq.size() << " with " << "std::deque: "
-		"time " << std::endl;
+	std::cout << "Time to process a range of " << sortedV.size() << " with " << "std::vector: " 
+		<< vecTime.count() << " ns" << std::endl;
+	std::cout << "Time to process a range of " << sortedDq.size() << " with " << "std::deque: " 
+		<< deqTime.count() << " ns" << std::endl;
 }
 
-void PmergeMe::fordJohnsonVect(std::vector<int>& vect){
-
-}
-
-void PmergeMe::fordJohnsonDeq(std::deque<int>& deq){
+std::chrono::nanoseconds PmergeMe::sortInVector(std::vector<int>& input){
 
 }
 
+std::chrono::nanoseconds PmergeMe::sortInDeque(std::vector<int>& input){
+
+}
+
+const std::vector<int> PmergeMe::getVector(void) const {
+	return _vect;
+}
+
+const std::deque<int> PmergeMe::getDeque(void) const {
+	return _deq;
+}
 
