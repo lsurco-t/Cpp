@@ -49,11 +49,19 @@ void PmergeMe::displayResults(std::vector<int> unsorted, std::vector<int> sorted
 }
 
 std::chrono::nanoseconds PmergeMe::sortInVector(std::vector<int>& input){
+	(void) input;
+	auto start = std::chrono::steady_clock::now();
 
+	auto stop = std::chrono::steady_clock::now();
+	return stop - start;
 }
 
 std::chrono::nanoseconds PmergeMe::sortInDeque(std::vector<int>& input){
-
+	(void) input;
+	auto start = std::chrono::steady_clock::now();
+	
+	auto stop = std::chrono::steady_clock::now();
+	return stop - start;
 }
 
 const std::vector<int> PmergeMe::getVector(void) const {
