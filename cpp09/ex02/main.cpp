@@ -1,24 +1,30 @@
 #include "PmergeMe.hpp"
 
 int main(int argc, char **argv){
-	PmergeMe fordJohson;
+	PmergeMe fordJohnson;
 	std::vector<int> sequence;
 	std::deque<int> sequenceDeq;
 	std::chrono::nanoseconds usedTimeVec;
 	std::chrono::nanoseconds usedTimeDeq;
 
-	if (!fordJohson.isValidSequence(argc, argv, sequence, sequenceDeq)){
+	if (argc == 1){
+		std::cerr << "Error: Empty sequence" << std::endl;
+		return FAILURE;
+	}
+
+	if (!fordJohnson.isValidSequence(argc, argv, sequence, sequenceDeq)){
 		return FAILURE;
 	}
 	
 	try {
-		usedTimeVec = fordJohson.sortInVector(sequence);
-		usedTimeDeq = fordJohson.sortInDeque(sequenceDeq);
-		fordJohson.displayResults(sequence, fordJohson.getVector(), fordJohson.getDeque(),
+		usedTimeVec = fordJohnson.sortInVector(sequence);
+		usedTimeDeq = fordJohnson.sortInDeque(sequenceDeq);
+		fordJohnson.displayResults(sequence, fordJohnson.getVector(), fordJohnson.getDeque(),
 			 usedTimeVec, usedTimeDeq);
 	} 
 	catch (std::exception &e){
-		std::cout << "Error: " << e.what() << std::endl;
+		std::cerr << "Error: " << e.what() << std::endl;
+		return FAILURE;
 	}
 	
 	return SUCCESS;
