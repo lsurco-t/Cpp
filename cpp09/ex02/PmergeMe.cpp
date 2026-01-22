@@ -49,6 +49,7 @@ void PmergeMe::displayResults(std::vector<int>& unsorted, const std::vector<int>
 		<< deqTime.count() << " ns" << std::endl;
 }
 
+/*Caller functions to process in each container*/
 std::chrono::nanoseconds PmergeMe::sortInVector(std::vector<int>& input){
 	auto start = std::chrono::steady_clock::now();
 	_vect = input;
@@ -60,100 +61,144 @@ std::chrono::nanoseconds PmergeMe::sortInVector(std::vector<int>& input){
 std::chrono::nanoseconds PmergeMe::sortInDeque(std::deque<int>& input){
 	auto start = std::chrono::steady_clock::now();
 	_deq = input;
-	// _deq = fordJohnson(_deq);
+	_deq = fordJohnson(_deq);
 	auto stop = std::chrono::steady_clock::now();
 	return stop - start;
 }
 
+/*Functions used to sort the sequence using Vector*/
 std::vector<int> PmergeMe::fordJohnson(std::vector<int>& vect){
 	if (vect.size() <= 1){
 		return vect;
 	}
 
 	bool hasStraggler = (vect.size() % 2 != 0);
-	int straggler = 0; // Last number in the sequence in case it is odd size
+	int straggler = 0; 
 
 	if (hasStraggler){
-		straggler = vect.back(); // Saves the last element before comparing in pairs
+		straggler = vect.back();
 		vect.pop_back();
 	}
 
-	std::vector<int> winners;
-	std::vector<int> losers;
+	std::vector<std::pair<int, int>> winners;
 	for (size_t i = 0; i < vect.size(); i += 2){
 		if (vect[i] < vect[i + 1]){
-			winners.push_back(vect[i + 1]);
-			losers.push_back(vect[i]);
+			winners.push_back({vect[i + 1], vect[i]});
 		} else {
-			winners.push_back(vect[i]);
-			losers.push_back(vect[i + 1]);
+			winners.push_back({vect[i], vect[i + 1]});
 		}
 	}
 
-	std::vector<int> mainChain = fordJohnson(winners);
+	std::vector<std::pair<int, int>> mainChain = sortPairs(winners);
 
-	generateJacobsthal(losers.size());
+	std::vector<int> result;
+	result.push_back(mainChain[0].second);
+	for (const auto& pair: mainChain){
+		result.push_back(pair.first);
+	}
+
+	std::vector<size_t> insertionOrder = generateJacobsthal(mainChain.size() - 1);
+	for (size_t index : insertionOrder){
+		binaryInsert(mainChain[index + 1].second, result);
+	}
 	
-	return mainChain;
+	if (hasStraggler){
+		binaryInsert(straggler, result);
+	}
+
+	return result;
 }
 
-// std::vector<std::pair<int, int>> PmergeMe::sortPairs(std::vector<std::pair<int, int>>& pairs){
-// 	if (pairs.size() <= 1){
-// 		return pairs;
-// 	}
+std::vector<std::pair<int, int>> PmergeMe::sortPairs(std::vector<std::pair<int, int>>& pairs){
+	if (pairs.size() <= 1){
+		return pairs;
+	}
 
-// 	bool hasStraggler = (pairs.size() % 2 != 0);
-// 	std::pair<int, int> straggler;
-// 	if (hasStraggler){
-// 		straggler = pairs.back();
-// 		pairs.pop_back();
-// 	}
+	bool hasStraggler = (pairs.size() % 2 != 0);
+	std::pair<int, int> straggler;
+	if (hasStraggler){
+		straggler = pairs.back();
+		pairs.pop_back();
+	}
 
-// 	std::vector<std::pair<int, int>> winningPairs;
-// 	std::vector<std::pair<int, int>> losingPairs;
+	std::vector<std::pair<int, int>> winningPairs;
+    std::vector<std::pair<int, int>> losingPairs; 
+	for (size_t i = 0; i < pairs.size(); i +=2){
+		if (pairs[i].first < pairs[i + 1].first){
+			winningPairs.push_back(pairs[i + 1]);
+            losingPairs.push_back(pairs[i]);
+		} else {
+			winningPairs.push_back(pairs[i]);
+			losingPairs.push_back(pairs[i + 1]);
+		}
+	}	
+	std::vector<std::pair<int, int>> sortedPairs = sortPairs(winningPairs);
+	for (size_t i = 0; i < losingPairs.size(); i++){
+		binaryInsertPairs(losingPairs[i], sortedPairs);
+	}
+	if (hasStraggler){
+		binaryInsertPairs(straggler, sortedPairs);
+ 	}
+	return sortedPairs;
+}
 
-// 	for (size_t i = 0; i < pairs.size(); i +=2){
-// 		if (pairs[i].first < pairs[i + 1].first){
-// 			winningPairs.push_back(pairs[i + 1]);
-// 			losingPairs.push_back(pairs[i]);
-// 		} else {
-// 			winningPairs.push_back(pairs[i]);
-// 			losingPairs.push_back(pairs[i + 1]);
-// 		}
-// 	}
-	
-// 	std::vector<std::pair<int, int>> sortedPairs = sortPairs(winningPairs);
+void PmergeMe::binaryInsertPairs(const std::pair<int, int>& pair, std::vector<std::pair<int, int>>& vect){
+	auto pos = std::upper_bound(vect.begin(), vect.end(), pair, [](const auto&a, const auto& b) {
+		return a.first < b.first;
+	});
+	vect.insert(pos, pair);
+}
 
-// 	if (hasStraggler){
+void PmergeMe::binaryInsert(int value, std::vector<int>& vect){
+	auto pos = std::upper_bound(vect.begin(), vect.end(), value);
+	vect.insert(pos, value);
+}
 
-// 	}
+/*Functions used to sort the sequence using Deque*/
+std::deque<int> PmergeMe::fordJohnson(std::deque<int>& deq){
 
-// 	return sortedPairs;
-// }
+}
+
+std::deque<std::pair<int, int>> PmergeMe::sortPairs(std::deque<std::pair<int, int>>& pairs){
+
+}
+
+void PmergeMe::binaryInsert(int value, std::deque<int>& vect){
+
+}
+void PmergeMe::binaryInsertPairs(const std::pair<int, int>& pair, std::deque<std::pair<int, int>>& vect){
+
+}
 
 std::vector<size_t> PmergeMe::generateJacobsthal(size_t size){
 	if (size == 0){
-		return;
+		return {};
 	}
-	std::vector<size_t> jacobsthal;
-	jacobsthal.push_back(0);
-	jacobsthal.push_back(1);
-
-	size_t index = 2;
+	std::vector<size_t> jacobsthal = {0 , 1};
 	while (jacobsthal.back() < size){
-		size_t next = jacobsthal[index - 1] + 2 * jacobsthal[index - 2];
+		size_t next = jacobsthal[jacobsthal.size() - 1] + 2 * jacobsthal[jacobsthal.size() - 2];
 		jacobsthal.push_back(next);
-		index++;
 	}
 	std::vector<size_t> insertionOrder;
-	for (size_t i = 3; i < jacobsthal.size(); i++){
-		size_t start = jacobsthal[i];
-		size_t end = jacobsthal[i - 1];
+	std::vector<bool> added(size, false);
+	insertionOrder.push_back(0);
+	added[0] = true;
 
-		for (size_t j = start; j > end; j--){
-			if (j - 1 < size){
-				insertionOrder.push_back(j - 1);
+	for (size_t i = 3; i < jacobsthal.size(); i++){
+		size_t upper = std::min(jacobsthal[i], size);
+		size_t lower = jacobsthal[i - 1];
+
+		for (size_t j = upper; j > lower; j--){
+			size_t index = j - 1;
+			if (index < size && !added[index]){
+				insertionOrder.push_back(index);
+				added[index] = true;
 			}
+		}
+	}
+	for (size_t i = 0; i < size; i++){
+		if (!added[i]){
+			insertionOrder.push_back(i);
 		}
 	}
 	return insertionOrder;

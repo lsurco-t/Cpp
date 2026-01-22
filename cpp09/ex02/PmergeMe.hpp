@@ -6,6 +6,7 @@
 #include <cstring>
 #include <set>
 #include <chrono>
+#include <algorithm>
 
 // General error codes return
 constexpr int FAILURE = 1;
@@ -19,7 +20,6 @@ class PmergeMe {
 
 		std::vector<int> fordJohnson(std::vector<int>& vect);
 		std::vector<std::pair<int, int>> sortPairs(std::vector<std::pair<int, int>>& pairs);
-		std::vector<size_t> generateJacobsthal(size_t size);
 		void binaryInsert(int value, std::vector<int>& vect);
 		void binaryInsertPairs(const std::pair<int, int>& pair, std::vector<std::pair<int, int>>& vect);
 		
@@ -28,6 +28,8 @@ class PmergeMe {
 		std::deque<std::pair<int, int>> sortPairs(std::deque<std::pair<int, int>>& pairs);
 		void binaryInsert(int value, std::deque<int>& vect);
 		void binaryInsertPairs(const std::pair<int, int>& pair, std::deque<std::pair<int, int>>& vect);
+
+		std::vector<size_t> generateJacobsthal(size_t size);
 
 	public:
 		PmergeMe() = default;
