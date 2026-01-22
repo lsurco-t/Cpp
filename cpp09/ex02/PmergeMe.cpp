@@ -60,7 +60,7 @@ std::chrono::nanoseconds PmergeMe::sortInVector(std::vector<int>& input){
 std::chrono::nanoseconds PmergeMe::sortInDeque(std::deque<int>& input){
 	auto start = std::chrono::steady_clock::now();
 	_deq = input;
-	_deq = fordJohnson(_deq);
+	// _deq = fordJohnson(_deq);
 	auto stop = std::chrono::steady_clock::now();
 	return stop - start;
 }
@@ -91,9 +91,9 @@ std::vector<int> PmergeMe::fordJohnson(std::vector<int>& vect){
 	}
 
 	std::vector<int> mainChain = fordJohnson(winners);
+
+	generateJacobsthal(losers.size());
 	
-
-
 	return mainChain;
 }
 
@@ -156,20 +156,7 @@ std::vector<size_t> PmergeMe::generateJacobsthal(size_t size){
 			}
 		}
 	}
-
 	return insertionOrder;
-}
-
-void PmergeMe::binaryInsert(int value, std::vector<int>& vect){
-
-}
-
-void PmergeMe::binaryInsertPairs(const std::pair<int, int>& pair, std::vector<std::pair<int, int>>& vect){
-
-}
-
-std::deque<int> PmergeMe::fordJohnson(std::deque<int>& deq){
-
 }
 
 const std::vector<int>& PmergeMe::getVector(void) const {
