@@ -78,60 +78,58 @@ std::vector<int> PmergeMe::fordJohnson(std::vector<int>& vect){
 		vect.pop_back();
 	}
 
-	std::vector<std::pair<int, int>> pairs;
+	std::vector<int> winners;
+	std::vector<int> losers;
 	for (size_t i = 0; i < vect.size(); i += 2){
 		if (vect[i] < vect[i + 1]){
-			pairs.push_back({vect[i + 1], vect[i]});
+			winners.push_back(vect[i + 1]);
+			losers.push_back(vect[i]);
 		} else {
-			pairs.push_back({vect[i], vect[i + 1]});
+			winners.push_back(vect[i]);
+			losers.push_back(vect[i + 1]);
 		}
 	}
 
-	std::vector<std::pair<int, int>> sortedPairs = sortPairs(pairs);
-
-	std::vector<int> mainChain;
-	for (auto& winner : sortedPairs){
-		mainChain.push_back(winner.first);
-	}
-
+	std::vector<int> mainChain = fordJohnson(winners);
+	
 
 
 	return mainChain;
 }
 
-std::vector<std::pair<int, int>> PmergeMe::sortPairs(std::vector<std::pair<int, int>>& pairs){
-	if (pairs.size() <= 1){
-		return pairs;
-	}
+// std::vector<std::pair<int, int>> PmergeMe::sortPairs(std::vector<std::pair<int, int>>& pairs){
+// 	if (pairs.size() <= 1){
+// 		return pairs;
+// 	}
 
-	bool hasStraggler = (pairs.size() % 2 != 0);
-	std::pair<int, int> straggler;
-	if (hasStraggler){
-		straggler = pairs.back();
-		pairs.pop_back();
-	}
+// 	bool hasStraggler = (pairs.size() % 2 != 0);
+// 	std::pair<int, int> straggler;
+// 	if (hasStraggler){
+// 		straggler = pairs.back();
+// 		pairs.pop_back();
+// 	}
 
-	std::vector<std::pair<int, int>> winningPairs;
-	std::vector<std::pair<int, int>> losingPairs;
+// 	std::vector<std::pair<int, int>> winningPairs;
+// 	std::vector<std::pair<int, int>> losingPairs;
 
-	for (size_t i = 0; i < pairs.size(); i +=2){
-		if (pairs[i].first < pairs[i + 1].first){
-			winningPairs.push_back(pairs[i + 1]);
-			losingPairs.push_back(pairs[i]);
-		} else {
-			winningPairs.push_back(pairs[i]);
-			losingPairs.push_back(pairs[i + 1]);
-		}
-	}
+// 	for (size_t i = 0; i < pairs.size(); i +=2){
+// 		if (pairs[i].first < pairs[i + 1].first){
+// 			winningPairs.push_back(pairs[i + 1]);
+// 			losingPairs.push_back(pairs[i]);
+// 		} else {
+// 			winningPairs.push_back(pairs[i]);
+// 			losingPairs.push_back(pairs[i + 1]);
+// 		}
+// 	}
 	
-	std::vector<std::pair<int, int>> sortedPairs = sortPairs(winningPairs);
+// 	std::vector<std::pair<int, int>> sortedPairs = sortPairs(winningPairs);
 
-	if (hasStraggler){
+// 	if (hasStraggler){
 
-	}
+// 	}
 
-	return sortedPairs;
-}
+// 	return sortedPairs;
+// }
 
 std::vector<size_t> PmergeMe::generateJacobsthal(size_t size){
 	if (size == 0){
