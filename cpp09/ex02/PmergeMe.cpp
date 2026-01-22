@@ -49,7 +49,7 @@ void PmergeMe::displayResults(std::vector<int>& unsorted, const std::vector<int>
 		<< deqTime.count() << " ns" << std::endl;
 }
 
-/*Caller functions to process in each container*/
+/*Caller functions to process in each container returning elapsed time*/
 std::chrono::nanoseconds PmergeMe::sortInVector(std::vector<int>& input){
 	auto start = std::chrono::steady_clock::now();
 	_vect = input;
