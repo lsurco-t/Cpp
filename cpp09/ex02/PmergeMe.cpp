@@ -44,9 +44,9 @@ void PmergeMe::displayResults(std::vector<int>& unsorted, const std::vector<int>
 	std::cout << std::endl;
 
 	std::cout << "Time to process a range of " << sortedV.size() << " with " << "std::vector: " 
-		<< vecTime.count() << " ns" << std::endl;
+		<< std::chrono::duration_cast<std::chrono::microseconds>(vecTime).count() << " us" << std::endl;
 	std::cout << "Time to process a range of " << sortedDq.size() << " with " << "std::deque: " 
-		<< deqTime.count() << " ns" << std::endl;
+		<< std::chrono::duration_cast<std::chrono::microseconds>(deqTime).count() << " us" << std::endl;
 }
 
 /*Caller functions to process in each container returning elapsed time*/
@@ -156,18 +156,89 @@ void PmergeMe::binaryInsert(int value, std::vector<int>& vect){
 
 /*Functions used to sort the sequence using Deque*/
 std::deque<int> PmergeMe::fordJohnson(std::deque<int>& deq){
+	if (deq.size() <= 1){
+		return deq;
+	}
 
+	bool hasStraggler = (deq.size() % 2 != 0);
+	int straggler = 0;
+	if (hasStraggler){
+		straggler = deq.back();
+		deq.pop_back();
+	}
+
+	std::deque<std::pair<int, int>> winners;
+	for (size_t i = 0; i < deq.size(); i += 2){
+		if (deq[i] < deq[i + 1]){
+			winners.push_back({deq[i + 1], deq[i]});
+		} else {
+			winners.push_back({deq[i], deq[i + 1]});
+		}
+	}
+
+	std::deque<std::pair<int, int>> mainChain = sortPairs(winners);
+
+	std::deque<int> result;
+	result.push_back(mainChain[0].second);
+	for (const auto &pair : mainChain){
+		result.push_back(pair.first);
+	}
+
+	std::vector<size_t> insertionOrder = generateJacobsthal(mainChain.size() - 1);
+	for (size_t index : insertionOrder){
+		binaryInsert(mainChain[index + 1].second, result);
+	}
+	
+	if (hasStraggler){
+		binaryInsert(straggler, result);
+	}
+	return result;
 }
 
 std::deque<std::pair<int, int>> PmergeMe::sortPairs(std::deque<std::pair<int, int>>& pairs){
+	if (pairs.size() <= 1){
+		return pairs;
+	}
 
+	bool hasStraggler = (pairs.size() % 2 != 0);
+	std::pair<int, int> straggler;
+	if (hasStraggler){
+		straggler = pairs.back();
+		pairs.pop_back();
+	}
+
+	std::deque<std::pair<int, int>> winningPairs;
+	std::deque<std::pair<int, int>> losingPairs;
+	for (size_t i = 0; i < pairs.size(); i += 2){
+		if (pairs[i].first < pairs[i + 1].first){
+			winningPairs.push_back(pairs[i + 1]);
+			losingPairs.push_back(pairs[i]);
+		} else {
+			winningPairs.push_back(pairs[i]);
+			losingPairs.push_back(pairs[i + 1]);
+		}
+	}
+
+	std::deque<std::pair<int, int>> sortedPairs = sortPairs(winningPairs);
+	for (size_t i = 0; i < losingPairs.size(); i++){
+		binaryInsertPairs(losingPairs[i], sortedPairs);
+	}
+
+	if (hasStraggler){
+		binaryInsertPairs(straggler, sortedPairs);
+	}
+	return sortedPairs;
 }
 
-void PmergeMe::binaryInsert(int value, std::deque<int>& vect){
-
+void PmergeMe::binaryInsert(int value, std::deque<int>& deq){
+	auto pos = std::upper_bound(deq.begin(), deq.end(), value);
+	deq.insert(pos, value);
 }
-void PmergeMe::binaryInsertPairs(const std::pair<int, int>& pair, std::deque<std::pair<int, int>>& vect){
-
+void PmergeMe::binaryInsertPairs(const std::pair<int, int>& pair, std::deque<std::pair<int, int>>& deq){
+	auto pos = std::upper_bound(deq.begin(), deq.end(), pair, [](const auto& a, const auto& b){
+		return a.first < b.first;
+	});
+	deq.insert(pos, pair);
 }
 
 std::vector<size_t> PmergeMe::generateJacobsthal(size_t size){

@@ -26,8 +26,8 @@ class PmergeMe {
 
 		std::deque<int> fordJohnson(std::deque<int>& deq);
 		std::deque<std::pair<int, int>> sortPairs(std::deque<std::pair<int, int>>& pairs);
-		void binaryInsert(int value, std::deque<int>& vect);
-		void binaryInsertPairs(const std::pair<int, int>& pair, std::deque<std::pair<int, int>>& vect);
+		void binaryInsert(int value, std::deque<int>& deq);
+		void binaryInsertPairs(const std::pair<int, int>& pair, std::deque<std::pair<int, int>>& deq);
 
 		std::vector<size_t> generateJacobsthal(size_t size);
 
