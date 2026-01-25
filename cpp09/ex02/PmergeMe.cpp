@@ -31,6 +31,10 @@ bool PmergeMe::isValidSequence(int argc, char **argv, std::vector<int>& vector, 
 
 void PmergeMe::displayResults(std::vector<int>& unsorted, const std::vector<int>& sortedV,
 	 const std::deque<int>& sortedDq, std::chrono::nanoseconds& vecTime, std::chrono::nanoseconds& deqTime ){
+
+	std::chrono::duration<double, std::micro> usVectorTime = vecTime;
+	std::chrono::duration<double, std::micro> usDequeTime = deqTime;
+
 	std::cout << "Before: ";
 	for (auto i : unsorted){
 		std::cout << i << ' ';
@@ -44,9 +48,9 @@ void PmergeMe::displayResults(std::vector<int>& unsorted, const std::vector<int>
 	std::cout << std::endl;
 
 	std::cout << "Time to process a range of " << sortedV.size() << " with " << "std::vector: " 
-		<< std::chrono::duration_cast<std::chrono::microseconds>(vecTime).count() << " us" << std::endl;
+		<< std::fixed << std::setprecision(5) << usVectorTime.count() << " us" << std::endl;
 	std::cout << "Time to process a range of " << sortedDq.size() << " with " << "std::deque: " 
-		<< std::chrono::duration_cast<std::chrono::microseconds>(deqTime).count() << " us" << std::endl;
+		<< std::fixed << std::setprecision(5) << usDequeTime.count() << " us" << std::endl;
 }
 
 /*Caller functions to process in each container returning elapsed time*/
