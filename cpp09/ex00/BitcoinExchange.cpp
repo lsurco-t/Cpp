@@ -30,6 +30,9 @@ void	BitcoinExchange::loadDatabase(const std::string& filename){
 			if (value.length() != pos){
 				continue; // Skip if not fully parsed
 			}
+			if (!isValidDate(date)){ // Skip malformed date
+				continue;
+			}
 			_database[date] = numericValue;
 		} catch (const std::exception&) {
 			continue; // Skip unparseable values
