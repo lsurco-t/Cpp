@@ -101,9 +101,11 @@ std::vector<int> PmergeMe::fordJohnson(std::vector<int>& vect){
 		result.push_back(pair.first);
 	}
 
-	std::vector<size_t> insertionOrder = generateJacobsthal(mainChain.size() - 1);
-	for (size_t index : insertionOrder){
-		binaryInsert(mainChain[index + 1].second, result);
+	if (mainChain.size() > 1){
+		std::vector<size_t> insertionOrder = generateJacobsthal(mainChain.size() - 1);
+		for (size_t index : insertionOrder){
+			binaryInsert(mainChain[index + 1].second, result);
+		}
 	}
 	
 	if (hasStraggler){
@@ -188,9 +190,11 @@ std::deque<int> PmergeMe::fordJohnson(std::deque<int>& deq){
 		result.push_back(pair.first);
 	}
 
-	std::vector<size_t> insertionOrder = generateJacobsthal(mainChain.size() - 1);
-	for (size_t index : insertionOrder){
-		binaryInsert(mainChain[index + 1].second, result);
+	if (mainChain.size() > 1){
+		std::vector<size_t> insertionOrder = generateJacobsthal(mainChain.size() - 1);
+		for (size_t index : insertionOrder){
+			binaryInsert(mainChain[index + 1].second, result);
+		}
 	}
 	
 	if (hasStraggler){
