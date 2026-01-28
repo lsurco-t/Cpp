@@ -55,16 +55,16 @@ void PmergeMe::displayResults(std::vector<int>& unsorted, const std::vector<int>
 
 /*Caller functions to process in each container returning elapsed time*/
 std::chrono::nanoseconds PmergeMe::sortInVector(std::vector<int>& input){
-	auto start = std::chrono::steady_clock::now();
 	_vect = input;
+	auto start = std::chrono::steady_clock::now();
 	_vect = fordJohnson(_vect);
 	auto stop = std::chrono::steady_clock::now();
 	return stop - start;
 }
 
 std::chrono::nanoseconds PmergeMe::sortInDeque(std::deque<int>& input){
-	auto start = std::chrono::steady_clock::now();
 	_deq = input;
+	auto start = std::chrono::steady_clock::now();
 	_deq = fordJohnson(_deq);
 	auto stop = std::chrono::steady_clock::now();
 	return stop - start;
